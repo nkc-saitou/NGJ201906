@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TitleButton : MonoBehaviour
+public class TitleBackButton : MonoBehaviour
 {
-
 	void Start ()
     {
 		
 	}
 
-    public void TitleButtonDown()
+    public void TitleBackButtonDown()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("Title");
     }
 
     void Update ()
