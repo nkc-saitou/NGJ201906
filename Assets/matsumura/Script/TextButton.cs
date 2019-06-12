@@ -15,6 +15,7 @@ public class TextButton : MonoBehaviour {
         //PlayerMoveDiceRoll
         //ChangeUIDiceRoll
         //ChangeUIItemAction
+        //ChangeUILook
     }
 
     public void OnClick()

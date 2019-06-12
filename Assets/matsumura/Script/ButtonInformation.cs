@@ -30,7 +30,7 @@ namespace matsumura.PlayerButton
             set { lookButton = value; }
         }
 
-        public int ButtonState = 0; //ボタンの現在の状態
+        public static int ButtonState = 0; //ボタンの現在の状態
 
         // Use this for initialization
         void Start()

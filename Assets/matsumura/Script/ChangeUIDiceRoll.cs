@@ -18,7 +18,8 @@ namespace matsumura.PlayerButton
 
         public void ChangeUIDice()
         {
-            Debug.Log(2);
+            ButtonInformation.ButtonState = 1;
+            
             buttonInformation.DiceButton.transform.
                 GetChild(0).GetComponent<Text>().text = "振る";
             buttonInformation.ItemButton.gameObject.SetActive(false);

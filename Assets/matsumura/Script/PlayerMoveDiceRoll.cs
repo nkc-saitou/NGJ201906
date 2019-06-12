@@ -10,20 +10,18 @@ namespace matsumura.PlayerMove
     public class PlayerMoveDiceRoll : MonoBehaviour
     {
         public ChangeUIDiceRoll roll;
-
-        public GameObject DiceButton; //ダイスを振るを選べるボタン
-        public GameObject ItemButton; //アイテムを使うを選べるボタン
-        public GameObject LookButton; //マップを見渡すを選べるボタン
-
-        public int ButtonState = 0; //ボタンの現在の状態
+        public ChangUIBackBehaviorSelection back;
 
         //DiceButtonを押した際の分岐
         public void OnClickDice()
         {
-            if(ButtonState == 0)
+            if (ButtonInformation.ButtonState == 0)
             {
-                Debug.Log(1);
                 roll.ChangeUIDice();
+            }
+            else
+            {
+                back.ChangUIBack();
             }
         }
 
@@ -31,12 +29,7 @@ namespace matsumura.PlayerMove
         void Start()
         {
             roll = transform.parent.GetComponent<ChangeUIDiceRoll>();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            back = transform.parent.GetComponent<ChangUIBackBehaviorSelection>();
         }
     }
 }

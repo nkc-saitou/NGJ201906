@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 namespace matsumura.PlayerButton
 {
-    public class ChangeUIItemAction : MonoBehaviour
+    public class ChangeUILookOver : MonoBehaviour
     {
-
         ButtonInformation buttonInformation;
+
 
         // Use this for initialization
         void Start()
@@ -16,9 +16,10 @@ namespace matsumura.PlayerButton
             buttonInformation = GetComponent<ButtonInformation>();
         }
 
-        public void ChangeUIItem()
+        // Update is called once per frame
+        public void ChangeUILook()
         {
-            ButtonInformation.ButtonState = 2;
+            ButtonInformation.ButtonState = 3;
 
             buttonInformation.DiceButton.gameObject.SetActive(false);
             buttonInformation.ItemButton.gameObject.SetActive(false);
