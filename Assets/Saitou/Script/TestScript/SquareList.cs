@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Saitou
+namespace Saitou.Test
 {
-    public class SquareList : MonoBehaviour
+    public class SquareList : MonoBehaviour,ISquareList<Transform>
     {
 
+        public List<Transform> SquareLis { get; set; }
 
         void Start()
         {
-            
-        }
+            SquareLis = new List<Transform>();
 
-        void Update()
-        {
-
+            foreach (Transform lis in transform)
+            {
+                SquareLis.Add(lis);
+            }
         }
     }
 }
