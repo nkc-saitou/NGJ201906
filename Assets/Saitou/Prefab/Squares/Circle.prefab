@@ -9,17 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1907037662638042}
+  m_RootGameObject: {fileID: 1675367120181638}
   m_IsPrefabParent: 1
---- !u!1 &1907037662638042
+--- !u!1 &1675367120181638
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4421605657140582}
-  - component: {fileID: 212004676758931844}
+  - component: {fileID: 4816718392102454}
+  - component: {fileID: 212516004393821490}
+  - component: {fileID: 114558517718383940}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -27,25 +28,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4421605657140582
+--- !u!4 &4816718392102454
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1907037662638042}
+  m_GameObject: {fileID: 1675367120181638}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &212004676758931844
+--- !u!114 &114558517718383940
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1675367120181638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19d336d63450b3b45a2bc914d8e01fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tempSqure: 2
+--- !u!212 &212516004393821490
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1907037662638042}
+  m_GameObject: {fileID: 1675367120181638}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -75,7 +88,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c471d8ddbadb942469c28829625a4adb, type: 3}
-  m_Color: {r: 0, g: 0.503448, b: 1, a: 1}
+  m_Color: {r: 0.2205882, g: 1, b: 0.96774834, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

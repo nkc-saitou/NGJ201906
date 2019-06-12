@@ -5,8 +5,6 @@ using UnityEngine;
 public static class OvalMove
 {
 
-    private static bool m_isCompiling = false;
-
     static OvalMove()
     {
         //エディタで再生中に毎秒約100回呼ばれるコールバック
@@ -15,7 +13,4 @@ public static class OvalMove
             if (Input.GetMouseButtonDown(0)) Debug.Log("ok");
         };
     }
-
-
-
 }
