@@ -8,7 +8,7 @@ public class StartButton : MonoBehaviour
 
 	void Start ()
     {
-        AudioManager.Instance.PlayBGM("Title");
+        
 	}
 
     public void StartButtonDown()
