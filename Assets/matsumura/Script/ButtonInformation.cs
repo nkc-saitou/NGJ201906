@@ -12,18 +12,21 @@ namespace matsumura.PlayerButton
 
         GameObject lookButton; //マップを見渡すを選べるボタン
 
-
+        //diceButtunの取得と書き換えの情報経由用
         public GameObject DiceButton
         {
             get { return diceButton; }
             set { diceButton = value; }
         }
 
+        //itemButtunの取得と書き換えの情報経由用
         public GameObject ItemButton
         {
             get { return itemButton; }
             set { itemButton = value; }
         }
+
+        //lookButtunの取得と書き換えの情報経由用
         public GameObject LookButton
         {
             get { return lookButton; }
@@ -35,6 +38,7 @@ namespace matsumura.PlayerButton
         // Use this for initialization
         void Start()
         {
+            //各ボタンの紐づけ
             diceButton = transform.Find("DiceButton").gameObject;
             itemButton = transform.Find("ItemButton").gameObject;
             lookButton = transform.Find("LookButton").gameObject;
