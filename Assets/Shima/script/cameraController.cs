@@ -4,26 +4,22 @@ using UnityEngine;
 
 namespace shima
 {
-
-    public class minusmasuController : MonoBehaviour, ISquaresCall
+    public class cameraController : MonoBehaviour
     {
+        GameObject player;
 
         // Use this for initialization
         void Start()
         {
-
+            
         }
 
         // Update is called once per frame
         void Update()
         {
-
-        }
-
-        public void SquaresCall()
-        {
-            GameObject director = GameObject.Find("GameDirector");
-            director.GetComponent<GameDirector>().koukandoDown();
+            Vector3 playerPos = this.player.transform.position;
+            transform.position = new Vector3(
+                playerPos.x, playerPos.y, transform.position.z);
         }
     }
 }

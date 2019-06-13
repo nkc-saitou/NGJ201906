@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace shima
 {
-    public class plusmasuController : MonoBehaviour
+    public class plusmasuController : MonoBehaviour, ISquaresCall
     {
         // Use this for initialization
         void Start()
@@ -14,6 +14,11 @@ namespace shima
 
         // Update is called once per frame
         void Update()
+        {
+           
+        }
+
+        public void SquaresCall()
         {
             GameObject director = GameObject.Find("GameDirector");
             director.GetComponent<GameDirector>().koukandoUp();

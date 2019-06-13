@@ -53,6 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4462660459154760}
+  - component: {fileID: 114660540444386850}
   m_Layer: 0
   m_Name: happeningprefab
   m_TagString: Untagged
@@ -146,6 +147,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7, y: 5}
   m_EdgeRadius: 0
+--- !u!114 &114660540444386850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1543809081465516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef6990633d13ab34ab6528b3019d1605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212473743323229568
 SpriteRenderer:
   m_ObjectHideFlags: 1
