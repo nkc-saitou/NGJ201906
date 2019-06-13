@@ -9,7 +9,7 @@ namespace Saitou.Test
 
         public List<Transform> SquareLis { get; set; }
 
-        void Start()
+        void Awake()
         {
             SquareLis = new List<Transform>();
 
@@ -17,6 +17,11 @@ namespace Saitou.Test
             {
                 SquareLis.Add(lis);
             }
+        }
+
+        void Start()
+        {
+
         }
     }
 }

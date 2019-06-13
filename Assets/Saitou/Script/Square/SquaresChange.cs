@@ -7,13 +7,13 @@ namespace Saitou.Squares
     public class SquaresChange : MonoBehaviour
     {
 
-        [SerializeField]
-        Sprite[] sprites;
+        //[SerializeField]
+        //Sprite[] sprites;
 
-        [SerializeField]
-        SquaresData data;
+        //[SerializeField]
+        //SquaresData data;
 
-        List<SquareType> squareLis = new List<SquareType>();
+        //List<SquareType> squareLis = new List<SquareType>();
 
 
         // Use this for initialization
@@ -33,8 +33,6 @@ namespace Saitou.Squares
         /// </summary>
         void OnValidate()
         {
-            squareLis.AddRange(data.SquaresDataLis);
-
             //foreach (SquareType type in squareLis)
             //{
             //    type.changeHandler += (squareType, renderer)

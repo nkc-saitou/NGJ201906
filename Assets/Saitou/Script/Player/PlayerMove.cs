@@ -17,7 +17,7 @@ namespace Saitou.Player
         {
             squareLis = FindInterface.FindObjectOfInterfaces<ISquareList<Transform>>();
             Debug.Log(squareLis.SquareLis);
-            //squareTransformLis.AddRange(squareLis.SquareLis);
+            squareTransformLis.AddRange(squareLis.SquareLis);
         }
 
         // Update is called once per frame
