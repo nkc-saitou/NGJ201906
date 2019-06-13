@@ -82,7 +82,7 @@ namespace Saitou.Editor
 
             // クリックしされた位置を探し、その場所に画像データを追加
             Event e = Event.current;
-            if(e.type == EventType.MouseDrag)
+            if(e.type == EventType.MouseDrag || e.type == EventType.MouseDown)
             {
                 Vector2 pos = Event.current.mousePosition;
                 int mouse_x;
@@ -236,13 +236,15 @@ namespace Saitou.Editor
 
             GetMapStringFormat();
 
-            SquaresData asset = CreateInstance<SquaresData>();
-            asset.SquaresDataLis = dataLis;
+            SquareDataSerialize asset = CreateInstance<SquareDataSerialize>();
+            asset.Map = dataLis;
 
             AssetDatabase.CreateAsset(asset, path + ".asset");
             EditorUtility.DisplayDialog("MapCreater", "output file success\n" + path, "ok");
 
-            Debug.Log(asset.SquaresDataLis.Count);
+            // scriptableObjectの値を保存する
+            EditorUtility.SetDirty(asset);
+            AssetDatabase.SaveAssets();
         }
 
         /// <summary>
@@ -257,7 +259,7 @@ namespace Saitou.Editor
                 string[] temps = data.Split('/');
                 string fileName = temps[temps.Length - 1];
 
-                return int.Parse((fileName.Split('.')[0][7]).ToString());
+                return int.Parse((fileName.Split('.')[0][16]).ToString());
             }
             else
             {
@@ -284,7 +286,6 @@ namespace Saitou.Editor
                     // データの数などを取得
                     result = OutputDataFormat(map[y, x]);
 
-                    Debug.Log(result);
                     tmpLis.Add(result);
                 }
 

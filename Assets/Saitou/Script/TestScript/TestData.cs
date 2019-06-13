@@ -5,20 +5,19 @@ using UnityEditor;
 
 public class TestData : MonoBehaviour {
 
-    public SquaresData data;
+    public SquareDataSerialize data;
 
     [ContextMenu("LogMenu")]
     void MapData()
     { 
-        int indexX = data.SquaresDataLis.Count;
-
+        int indexX = data.Map.Count;
         Debug.Log(indexX);
 
         for (int i = 0; i < indexX; i++)
         {
             for (int j = 0; j < indexX; j++)
             {
-                Debug.Log(data.SquaresDataLis[j][i]);
+                Debug.Log(data.Map[j][i]);
             }
         }
     }
