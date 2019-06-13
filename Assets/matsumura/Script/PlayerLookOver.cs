@@ -19,7 +19,7 @@ namespace matsumura.PlayerLook
         {
             //ButtonStateの値によって分岐
             //0は初期数値
-            if (ButtonInformation.ButtonState == 0)
+            if (ButtonInformation.buttonState == 0)
             {
                 //マップを見渡すことを選んだ場合のUI処理
                 roll.ChangeUILook();

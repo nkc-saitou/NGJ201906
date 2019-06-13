@@ -19,7 +19,7 @@ namespace matsumura.PlayerMove
         {
             //ButtonStateの値によって分岐
             //0は初期数値
-            if (ButtonInformation.ButtonState == 0)
+            if (ButtonInformation.buttonState == 0)
             {
                 //サイコロを振ることを選択した場合のUI処理
                 roll.ChangeUIDice();

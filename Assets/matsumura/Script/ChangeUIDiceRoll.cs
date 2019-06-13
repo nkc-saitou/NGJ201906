@@ -21,7 +21,7 @@ namespace matsumura.PlayerButton
         {
             //どのUIに変わったかをわかるように値を代入
             //1はサイコロをふる選択をした場合のUI
-            ButtonInformation.ButtonState = 1;
+            ButtonInformation.buttonState = 1;
 
             //DiceButtonの子クラスのテキストを変更
             buttonInformation.DiceButton.transform.

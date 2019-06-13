@@ -23,7 +23,7 @@ namespace matsumura.PlayerButton
         {
             //どのUIに変わったかをわかるように値を代入
             //3はマップを見渡す選択をした場合のUI
-            ButtonInformation.ButtonState = 3;
+            ButtonInformation.buttonState = 3;
 
             //DiceButtonを非活性化
             buttonInformation.DiceButton.gameObject.SetActive(false);

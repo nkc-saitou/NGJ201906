@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace matsumura.PlayerAction
 {
-    public class PlayerBehaviorSelection : MonoBehaviour
+    public class PlayerUseItemDecide : MonoBehaviour
     {
 
         // Use this for initialization
