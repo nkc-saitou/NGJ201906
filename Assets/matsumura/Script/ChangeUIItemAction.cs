@@ -19,6 +19,8 @@ namespace matsumura.PlayerButton
         //forで処理するため、配列にボタンの情報をまとめる
         GameObject[] ItemSlot = new GameObject[6];
 
+        Saitou.Player.PlayerMove playerMove;
+
         //プレイヤーのアイテム情報をいれる変数(仮)
         int[] a = { 0, 1, 2, 3, 4, 0 };
 
@@ -49,6 +51,7 @@ namespace matsumura.PlayerButton
             ItemSlot[5] = buttonInformation.ItemSlotF;
 
             //プレイヤーの情報取得
+            playerMove = FindObjectOfType<Saitou.Player.PlayerMove>();
 
         }
 

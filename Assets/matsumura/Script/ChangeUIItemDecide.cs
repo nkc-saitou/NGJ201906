@@ -19,8 +19,7 @@ public class ChangeUIItemDecide : MonoBehaviour {
     //forで処理するため、配列にボタンの情報をまとめる
     GameObject[] ItemSlot = new GameObject[6];
 
-    //プレイヤーのアイテム情報をいれる変数(仮)
-    int[] a = { 0, 1, 2, 3, 4, 0 };
+    Saitou.Player.PlayerMove playerMove;
 
     // Use this for initialization
     void Start()
@@ -47,7 +46,7 @@ public class ChangeUIItemDecide : MonoBehaviour {
         ItemSlot[5] = buttonInformation.ItemSlotF;
 
         //プレイヤーの情報取得
-
+        playerMove = FindObjectOfType<Saitou.Player.PlayerMove>();
     }
 
     // Update is called once per frame
@@ -56,6 +55,9 @@ public class ChangeUIItemDecide : MonoBehaviour {
         //どのUIに変わったかをわかるように値を代入
         //2はアイテムの使用を選択をした場合のUI
         ButtonInformation.buttonState = 5;
+
+        //
+        DiceRollInformation.itemActionNum = buttonNum;
 
         //DiceButtonを非活性化
         buttonInformation.DiceButton.gameObject.SetActive(true);
@@ -70,31 +72,31 @@ public class ChangeUIItemDecide : MonoBehaviour {
 
         //UseItemに画像を入れる
         playerItemInformation.UseItem.GetComponent<Image>().sprite =
-            playerItemInformation.ItemImages[a[buttonNum]];
+            playerItemInformation.ItemImages[playerMove.HaveItem[buttonNum]];
 
         //UseItemが見えるようにする
         playerItemInformation.UseItem.GetComponent<Image>().color = new Color(1, 1, 1, 1);
 
         //アイテムによってテキストを変更
-        if (a[buttonNum] == (int)ItemType.Car)
+        if (playerMove.HaveItem[buttonNum] == (int)ItemType.Car)
         {
             DiceRollInformation.itemMoveNum = 8;
             playerItemInformation.GameText.GetComponent<Text>().text = 
                 "8マス固定で進みます\nこのアイテムを使用しますか？";
         }
-        else if (a[buttonNum] == (int)ItemType.Bicycle)
+        else if (playerMove.HaveItem[buttonNum] == (int)ItemType.Bicycle)
         {
             DiceRollInformation.itemMoveNum = 6;
             playerItemInformation.GameText.GetComponent<Text>().text =
                 "6マス固定で進みます\nこのアイテムを使用しますか？";
         }
-        else if (a[buttonNum] == (int)ItemType.Skateboard)
+        else if (playerMove.HaveItem[buttonNum] == (int)ItemType.Skateboard)
         {
             DiceRollInformation.itemMoveNum = 4;
             playerItemInformation.GameText.GetComponent<Text>().text =
                 "4マス固定で進みます\nこのアイテムを使用しますか？";
         }
-        else if (a[buttonNum] == (int)ItemType.Hopping)
+        else if (playerMove.HaveItem[buttonNum] == (int)ItemType.Hopping)
         {
             DiceRollInformation.itemMoveNum = 1;
             playerItemInformation.GameText.GetComponent<Text>().text =
@@ -111,7 +113,7 @@ public class ChangeUIItemDecide : MonoBehaviour {
             PlayerHaveItem[i].GetComponent<Image>().sprite =
                 playerItemInformation.ItemImages[(int)ItemType.None];
             //ボタンを非活性化
-            if(a[i] != 0)
+            if(playerMove.HaveItem[i] != 0)
             ItemSlot[i].SetActive(false);
         }
 

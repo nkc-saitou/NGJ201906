@@ -13,6 +13,9 @@ namespace matsumura.DiceRoll
         //
         static public int itemMoveNum;
 
+        //
+        static public int itemActionNum;
+
         //サイコロを振る演出のイメージ部分
         GameObject changDiceRollImage;
 

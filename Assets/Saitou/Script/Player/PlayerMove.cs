@@ -13,6 +13,7 @@ namespace Saitou.Player
     {
         wait,
         move,
+        squareAction,
         actionSelect,
     }
 
@@ -22,6 +23,17 @@ namespace Saitou.Player
 
         [Header("south,west,east,north")]
         public Button[] button;
+
+        public Text moveCountText;
+
+        //所持アイテム
+        [SerializeField] int[] haveItem;
+
+        public int[] HaveItem
+        {
+            get { return haveItem; }
+            set { haveItem = value; }
+        }
 
         List<List<int>> mapData = new List<List<int>>();
         List<List<Transform>> mapPosLis = new List<List<Transform>>();
@@ -41,18 +53,13 @@ namespace Saitou.Player
         // 次の目的地
         Position nextPos;
 
-        // 移動時間
-        float time;
-        float startTime;
-
         // 位置移動の座標
         Vector3 startPosition;
-        Vector3 endPosition;
 
         // 動ける数
         int moveCount = 0;
 
-        PlayerActionState state = PlayerActionState.wait;
+        PlayerActionState state = PlayerActionState.actionSelect;
 
         /// <summary>
         /// MapCreateよりも遅く実行する
@@ -69,14 +76,6 @@ namespace Saitou.Player
             NextSquare();
         }
 
-        void Update()
-        {
-            if(Input.GetKeyDown(KeyCode.A))
-            {
-                SceneManager.LoadScene("Result");
-            }
-        }
-
         /// <summary>
         ///  値の初期化
         /// </summary>
@@ -84,6 +83,9 @@ namespace Saitou.Player
         {
             startPos.x = create.StartPos.x;
             startPos.y = create.StartPos.y;
+
+            oneBeforePos.x = 0;
+            oneBeforePos.y = 0;
 
             goalPos.x = create.GoalPos.x;
             goalPos.y = create.GoalPos.y;
@@ -111,7 +113,7 @@ namespace Saitou.Player
                 int index_x = squareLis[nowPos.y][nowPos.x].PositionLis[i].x;
                 int index_y = squareLis[nowPos.y][nowPos.x].PositionLis[i].y;
 
-                if (index_x != 0 && index_y != 0 && squareLis[index_y][index_x].Squre != 0)
+                if ((index_x != 0 && index_y != 0 ) && squareLis[index_y][index_x].Squre != 0 && (index_x != oneBeforePos.x || index_y != oneBeforePos.y))
                 {
                     candidate.Add(squareLis[nowPos.y][nowPos.x].PositionLis[i]);
 
@@ -122,18 +124,30 @@ namespace Saitou.Player
         }
 
         /// <summary>
-        /// 移動開始
+        /// 歩ける数
         /// </summary>
-        /// <param name="moveSquareCount">移動できるマスの数</param>
-        void MoveStart(int moveSquareCount)
+        /// <param name="count"></param>
+        public void GetMoveCount(int count)
         {
-            moveCount = moveSquareCount;
+            state = PlayerActionState.move;
+            moveCount = count;
+
+            moveCountText.text = moveCount.ToString();
         }
 
         void Move()
         {
-            nowPos.x = nextPos.x;
-            nowPos.y = nextPos.y;
+            oneBeforePos = nowPos;
+            nowPos = nextPos;
+
+            if (moveCount > 0) moveCount--;
+            else
+            {
+                state = PlayerActionState.squareAction;
+                return;
+            }
+
+            moveCountText.text = moveCount.ToString();
 
             transform.position = mapPosLis[nowPos.y][nowPos.x].transform.localPosition;
         }
@@ -143,6 +157,8 @@ namespace Saitou.Player
         /// </summary>
         public void OnNorthButton()
         {
+            if (state != PlayerActionState.move) return;
+
             nextPos.x = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.north].x;
             nextPos.y = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.north].y;
 
@@ -152,6 +168,8 @@ namespace Saitou.Player
 
         public void OnSorthButton()
         {
+            if (state != PlayerActionState.move) return;
+
             nextPos.x = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.south].x;
             nextPos.y = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.south].y;
 
@@ -161,6 +179,8 @@ namespace Saitou.Player
 
         public void OnWestButton()
         {
+            if (state != PlayerActionState.move) return;
+
             nextPos.x = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.west].x;
             nextPos.y = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.west].y;
 
@@ -170,6 +190,8 @@ namespace Saitou.Player
 
         public void OnEastButton()
         {
+            if (state != PlayerActionState.move) return;
+
             nextPos.x = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.east].x;
             nextPos.y = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.east].y;
 
