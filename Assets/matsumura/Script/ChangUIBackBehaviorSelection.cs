@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using matsumura.PLayerItem;
+using matsumura.DiceRoll;
 
 namespace matsumura.PlayerButton
 {
@@ -13,6 +14,8 @@ namespace matsumura.PlayerButton
         ButtonInformation buttonInformation;
         //PlayerItemInformationをいれる変数
         PlayerItemInformation playerItemInformation;
+        //DiceRollInformationをいれる変数
+        DiceRollInformation diceRollInformation;
 
         //forで処理するため、配列にイメージの情報をまとめる
         GameObject[] PlayerHaveItem = new GameObject[6];
@@ -29,6 +32,8 @@ namespace matsumura.PlayerButton
             buttonInformation = GetComponent<ButtonInformation>();
             //PlayerItemInformationのイメージを使うので変数にいれる
             playerItemInformation = GetComponent<PlayerItemInformation>();
+            //DiceRollInformationのイメージを使うので変数にいれる
+            diceRollInformation = GetComponent<DiceRollInformation>();
 
             //配列にイメージを入れるところの情報を写す
             PlayerHaveItem[0] = playerItemInformation.PlayerHaveItemA;
@@ -55,6 +60,10 @@ namespace matsumura.PlayerButton
                 //DiceButtonの子クラスのテキストを変更
                 buttonInformation.DiceButton.transform.
                 GetChild(0).GetComponent<Text>().text = "サイコロ";
+
+                //サイコロを振る演出のON
+                diceRollInformation.ChangDiceRollImage.gameObject.SetActive(false);
+                diceRollInformation.ChangDiceRollText.gameObject.SetActive(false);
             }
             else if(ButtonInformation.buttonState == 2)
             {

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using matsumura.PLayerItem;
+using matsumura.DiceRoll;
 
 namespace matsumura.PlayerButton
 {
@@ -13,6 +14,8 @@ namespace matsumura.PlayerButton
         ButtonInformation buttonInformation;
         //PlayerItemInformationをいれる変数
         PlayerItemInformation playerItemInformation;
+        //DiceRollInformationをいれる変数
+        DiceRollInformation diceRollInformation;
 
         // Use this for initialization
         void Start()
@@ -21,6 +24,8 @@ namespace matsumura.PlayerButton
             buttonInformation = GetComponent<ButtonInformation>();
             //PlayerItemInformationのイメージを使うので変数にいれる
             playerItemInformation = GetComponent<PlayerItemInformation>();
+            //DiceRollInformationのイメージを使うので変数にいれる
+            diceRollInformation = GetComponent<DiceRollInformation>();
         }
 
         public void ChangeUIDice()
@@ -29,9 +34,13 @@ namespace matsumura.PlayerButton
             //1はサイコロをふる選択をした場合のUI
             ButtonInformation.buttonState = 1;
 
-            //
+            //テキストの変更
             playerItemInformation.GameText.GetComponent<Text>().text =
                 "サイコロを振って進むマスを決めよう！";
+
+            //サイコロを振る演出のON
+            diceRollInformation.ChangDiceRollImage.gameObject.SetActive(true);
+            diceRollInformation.ChangDiceRollText.gameObject.SetActive(true);
 
             //DiceButtonの子クラスのテキストを変更
             buttonInformation.DiceButton.transform.
