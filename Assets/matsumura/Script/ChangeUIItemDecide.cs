@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 using matsumura.PLayerItem;
 using matsumura.PlayerButton;
+using matsumura.DiceRoll;
 
 public class ChangeUIItemDecide : MonoBehaviour {
 
@@ -77,21 +78,25 @@ public class ChangeUIItemDecide : MonoBehaviour {
         //アイテムによってテキストを変更
         if (a[buttonNum] == (int)ItemType.Car)
         {
+            DiceRollInformation.itemMoveNum = 8;
             playerItemInformation.GameText.GetComponent<Text>().text = 
                 "8マス固定で進みます\nこのアイテムを使用しますか？";
         }
         else if (a[buttonNum] == (int)ItemType.Bicycle)
         {
+            DiceRollInformation.itemMoveNum = 6;
             playerItemInformation.GameText.GetComponent<Text>().text =
                 "6マス固定で進みます\nこのアイテムを使用しますか？";
         }
         else if (a[buttonNum] == (int)ItemType.Skateboard)
         {
+            DiceRollInformation.itemMoveNum = 4;
             playerItemInformation.GameText.GetComponent<Text>().text =
                 "4マス固定で進みます\nこのアイテムを使用しますか？";
         }
         else if (a[buttonNum] == (int)ItemType.Hopping)
         {
+            DiceRollInformation.itemMoveNum = 1;
             playerItemInformation.GameText.GetComponent<Text>().text =
                 "1マス固定で進みます\nこのアイテムを使用しますか？";
         }

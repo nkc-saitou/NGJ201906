@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using matsumura.DiceRoll;
+
 namespace matsumura.ChangDiceUI
 {
 
     public class ChangDiceRollTextUI : MonoBehaviour
     {
         //何フレームに一度画像とテキストを変えるかをカウントする変数
-        int ChangTextflameCount = 4;
+        int ChangTextflameCount = 3;
         //今の画像とテキストの数
         static public int UIDiceNum = 0;
 
@@ -20,7 +22,7 @@ namespace matsumura.ChangDiceUI
             ChangTextflameCount++;
 
             //5フレームに一度変更
-            if (ChangTextflameCount == 5)
+            if (ChangTextflameCount == 4)
             {
                 //カウントを戻す
                 ChangTextflameCount = 0;
@@ -35,6 +37,8 @@ namespace matsumura.ChangDiceUI
 
                 //テキストに反映
                 gameObject.GetComponent<Text>().text = "" + UIDiceNum;
+                //
+                DiceRollInformation.PlayerMoveNum = UIDiceNum;
             }
         }
     }

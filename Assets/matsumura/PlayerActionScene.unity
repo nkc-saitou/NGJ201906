@@ -2268,6 +2268,8 @@ GameObject:
   - component: {fileID: 1556565338}
   - component: {fileID: 1556565339}
   - component: {fileID: 1556565341}
+  - component: {fileID: 1556565343}
+  - component: {fileID: 1556565344}
   m_Layer: 0
   m_Name: ChangeUIPlayerAction
   m_TagString: Untagged
@@ -2399,6 +2401,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5edd5d9acf702ac46ada41c3df4b145a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1556565343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1556565333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0583206854d21d445b668f17846fd1ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1556565344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1556565333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b80268612971445845c091bb4911aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1558238097
@@ -2587,6 +2611,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roll: {fileID: 0}
   back: {fileID: 0}
+  Dice: {fileID: 0}
+  Item: {fileID: 0}
 --- !u!114 &1573387683
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using matsumura.PlayerButton;
+using matsumura.DiceRoll;
 
 namespace matsumura.PlayerMove
 {
@@ -13,6 +14,10 @@ namespace matsumura.PlayerMove
         public ChangeUIDiceRoll roll;
         //ChangUIBackBehaviorSelectionをいれる変数
         public ChangUIBackBehaviorSelection back;
+        //ChangeUIPlayerBehaviorSelectionDiceをいれる変数
+        public ChangeUIPlayerBehaviorSelectionDice Dice;
+        //ChangeUIPlayerBehaviorSelectionItemをいれる変数
+        public ChangeUIPlayerBehaviorSelectionItem Item;
 
         //DiceButtonを押した際の分岐
         public void OnClickDice()
@@ -27,14 +32,15 @@ namespace matsumura.PlayerMove
             //1はサイコロを振る画面
             else if(ButtonInformation.buttonState == 1)
             {
+                Debug.Log(DiceRollInformation.PlayerMoveNum);
                 //サイコロ振った場合のUIと値の処理
-                
+                Dice.ChangeUIDicePutOut(DiceRollInformation.PlayerMoveNum);
             }
             //5はアイテム使用の最終確認画面
             else if(ButtonInformation.buttonState == 5)
             {
                 //アイテムを使った際の値の処理
-
+                Item.ChangeUIItemPutOut(DiceRollInformation.itemMoveNum);
             }
         }
 
@@ -44,6 +50,8 @@ namespace matsumura.PlayerMove
             //クラスを変数の中に入れる(親クラスからの参照)
             roll = transform.parent.GetComponent<ChangeUIDiceRoll>();
             back = transform.parent.GetComponent<ChangUIBackBehaviorSelection>();
+            Dice = transform.parent.GetComponent<ChangeUIPlayerBehaviorSelectionDice>();
+            Item = transform.parent.GetComponent<ChangeUIPlayerBehaviorSelectionItem>();
         }
     }
 }

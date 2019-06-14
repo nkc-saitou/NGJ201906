@@ -21,6 +21,7 @@ public class TextButton : MonoBehaviour {
         //PlayerItemInformation
         //ChangeUIItemDecide
         //DiceRollInformation
+        //ChangeUIPlayerBehaviorSelection
     }
 
     public void OnClick()

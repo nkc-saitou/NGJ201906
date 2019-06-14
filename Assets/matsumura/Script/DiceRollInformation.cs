@@ -10,6 +10,9 @@ namespace matsumura.DiceRoll
         //プレイヤーがいくつ進むかを入れる変数
         static public int PlayerMoveNum;
 
+        //
+        static public int itemMoveNum;
+
         //サイコロを振る演出のイメージ部分
         GameObject changDiceRollImage;
 
