@@ -21,7 +21,7 @@ public class Ranking : MonoBehaviour
     public float hozon1 = 0;
     public float hozon2 = 0;
 
-    public float lovePoint = 200;
+    public float lovePoint = 999;
 
 
     void Start ()
