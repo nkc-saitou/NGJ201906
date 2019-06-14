@@ -16,8 +16,6 @@ public class BGM : MonoBehaviour
 
     public void StartButtonDown()
     {
-
         AudioManager.Instance.PlayBGM("Main");
-
     }
 }

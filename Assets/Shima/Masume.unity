@@ -113,6 +113,34 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &21430359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 21430360}
+  m_Layer: 0
+  m_Name: masuDirector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &21430360
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 21430359}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4412973, y: 0.14445728, z: -0.094673984}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &29194672 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4924358973359316, guid: 6f8cf73eb219b8b43856504c6fab7f35,
@@ -274,7 +302,7 @@ GameObject:
   - component: {fileID: 557293197}
   - component: {fileID: 557293196}
   m_Layer: 5
-  m_Name: Image
+  m_Name: textbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -454,6 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7eb943dd74047b4481a09ee6144ef97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lovePoint: 50
 --- !u!4 &970488809
 Transform:
   m_ObjectHideFlags: 0
@@ -1255,6 +1284,7 @@ GameObject:
   - component: {fileID: 1696539714}
   - component: {fileID: 1696539716}
   - component: {fileID: 1696539715}
+  - component: {fileID: 1696539717}
   m_Layer: 5
   m_Name: infomation
   m_TagString: Untagged
@@ -1319,6 +1349,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1696539713}
+--- !u!114 &1696539717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1696539713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98faed135651b9646b13affcbc86e506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1728160629 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4348074215616104, guid: 8e34b7f1aa9ebcc438123d781a277dbd,

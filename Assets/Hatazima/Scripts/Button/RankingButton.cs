@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartButton : MonoBehaviour
+public class RankingButton : MonoBehaviour
 {
-
 	void Start ()
     {
-        
+		
 	}
 
-    public void StartButtonDown()
+    public void RankingButtonDown()
     {
-        FadeManager.Instance.LoadScene("MainScene");
+        SceneManager.LoadScene("Ranking");
     }
 
     void Update ()
