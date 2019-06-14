@@ -10,11 +10,9 @@ namespace matsumura.PlayerUesItem
     {
         //ChangeUIItemActionをいれる変数
         public ChangeUIItemAction roll;
-        //ChangUIBackBehaviorSelectionをいれる変数
-        public ChangUIBackBehaviorSelection back;
 
         //ItemButtonを押した際の分岐
-        public void OnClickItem()
+        public void OnClickItemAction()
         {
             //アイテムを使用することを選んだ場合のUI処理
             roll.ChangeUIItem();
@@ -25,7 +23,6 @@ namespace matsumura.PlayerUesItem
         {
             //クラスを変数の中に入れる(親クラスからの参照)
             roll = transform.parent.GetComponent<ChangeUIItemAction>();
-            back = transform.parent.GetComponent<ChangUIBackBehaviorSelection>();
         }
     }
 }

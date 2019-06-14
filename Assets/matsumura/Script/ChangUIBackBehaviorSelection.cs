@@ -19,6 +19,9 @@ namespace matsumura.PlayerButton
         //forで処理するため、配列にボタンの情報をまとめる
         GameObject[] ItemSlot = new GameObject[6];
 
+        //プレイヤーのアイテム情報をいれる変数(仮)
+        int[] a = { 0, 1, 2, 3, 4, 0 };
+
         // Use this for initialization
         void Start()
         {
@@ -90,6 +93,11 @@ namespace matsumura.PlayerButton
                 //DiceButtonを活性化
                 buttonInformation.DiceButton.gameObject.SetActive(true);
             }
+
+            //GameTextのテキストを変更(GameTextは差し替え予定)
+            playerItemInformation.GameText.GetComponent<Text>().text =
+                "行動をクリックで選択してね";
+
             //ItemButtonを活性化
             buttonInformation.ItemButton.gameObject.SetActive(true);
             //LookButtonの子クラスのテキストを変更
@@ -99,6 +107,7 @@ namespace matsumura.PlayerButton
             //どのUIに変わったかをわかるように値を代入
             //0は行動選択のUI(初期画面)
             ButtonInformation.buttonState = 0;
+
         }
     }
 }

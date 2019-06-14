@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace matsumura.PLayerItem
 {
+    //アイテムの数を型参照するときに使う
     public enum ItemType
     {
         None,
@@ -16,6 +17,8 @@ namespace matsumura.PLayerItem
     {
         //インスペクタ上から画像をいれる
         public Sprite[] ItemImages;
+        //インスペクタ上からゲームのテキスト(Information)
+        public GameObject GameText;
 
         //どのボタンがどのアイテムかをイメージで分かりやすく
         GameObject playerHaveItemA;
@@ -24,6 +27,9 @@ namespace matsumura.PLayerItem
         GameObject playerHaveItemD;
         GameObject playerHaveItemE;
         GameObject playerHaveItemF;
+
+        //どんなアイテムを使うか分かりやすく
+        GameObject useItem;
 
         //イメージの取得と書き換えの情報経由用
         public GameObject PlayerHaveItemA
@@ -57,8 +63,15 @@ namespace matsumura.PLayerItem
             set { playerHaveItemF = value; }
         }
 
+        //useItemの取得と書き換えの情報経由用
+        public GameObject UseItem
+        {
+            get { return useItem; }
+            set { useItem = value; }
+        }
+
         // Use this for initialization
-        void Start()
+        void Awake()
         {
             //各イメージの紐づけ
             playerHaveItemA = transform.Find("PlayerHaveItemA").gameObject;
@@ -67,6 +80,7 @@ namespace matsumura.PLayerItem
             playerHaveItemD = transform.Find("PlayerHaveItemD").gameObject;
             playerHaveItemE = transform.Find("PlayerHaveItemE").gameObject;
             playerHaveItemF = transform.Find("PlayerHaveItemF").gameObject;
+            useItem = transform.Find("UseItem").gameObject;
         }
 
     }

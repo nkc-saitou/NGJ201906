@@ -19,6 +19,7 @@ public class TextButton : MonoBehaviour {
         //ItemSlotA
         //PlayerHaveItemA
         //PlayerItemInformation
+        //ChangeUIItemDecide
     }
 
     public void OnClick()

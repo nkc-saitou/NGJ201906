@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using matsumura.PLayerItem;
+
 namespace matsumura.PlayerButton
 {
     public class ChangeUIDiceRoll : MonoBehaviour
     {
         //ButtonInformationをいれる変数
         ButtonInformation buttonInformation;
+        //PlayerItemInformationをいれる変数
+        PlayerItemInformation playerItemInformation;
 
         // Use this for initialization
         void Start()
         {
             //ButtonInformationの変数を使うためにこのクラスの変数にいれる
             buttonInformation = GetComponent<ButtonInformation>();
+            //PlayerItemInformationのイメージを使うので変数にいれる
+            playerItemInformation = GetComponent<PlayerItemInformation>();
         }
 
         public void ChangeUIDice()
@@ -22,6 +28,10 @@ namespace matsumura.PlayerButton
             //どのUIに変わったかをわかるように値を代入
             //1はサイコロをふる選択をした場合のUI
             ButtonInformation.buttonState = 1;
+
+            //
+            playerItemInformation.GameText.GetComponent<Text>().text =
+                "サイコロを振って進むマスを決めよう！";
 
             //DiceButtonの子クラスのテキストを変更
             buttonInformation.DiceButton.transform.

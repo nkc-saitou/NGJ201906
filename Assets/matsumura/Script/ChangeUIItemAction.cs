@@ -38,6 +38,8 @@ namespace matsumura.PlayerButton
             PlayerHaveItem[4] = playerItemInformation.PlayerHaveItemE;
             PlayerHaveItem[5] = playerItemInformation.PlayerHaveItemF;
 
+            Debug.Log(playerItemInformation.PlayerHaveItemA);
+
             //配列にボタンの情報を写す
             ItemSlot[0] = buttonInformation.ItemSlotA;
             ItemSlot[1] = buttonInformation.ItemSlotB;
@@ -52,9 +54,19 @@ namespace matsumura.PlayerButton
 
         public void ChangeUIItem()
         {
+            //
+            if (ButtonInformation.buttonState == 5)
+            {
+                playerItemInformation.UseItem.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            }
+
             //どのUIに変わったかをわかるように値を代入
             //2はアイテムの使用を選択をした場合のUI
             ButtonInformation.buttonState = 2;
+
+            //
+            playerItemInformation.GameText.GetComponent<Text>().text =
+                "どのアイテムを使用しますか？";
 
             //DiceButtonを非活性化
             buttonInformation.DiceButton.gameObject.SetActive(false);
@@ -70,8 +82,11 @@ namespace matsumura.PlayerButton
                 //アイテムを持っているかどうか
                 if(a[i] != (int)ItemType.None)
                 {
+                    Debug.Log(PlayerHaveItem[1]);
+
                     //アイテムの画像を入れる
-                    PlayerHaveItem[i].GetComponent<Image>().sprite = playerItemInformation.ItemImages[a[i]];
+                    PlayerHaveItem[i].GetComponent<Image>().sprite =
+                        playerItemInformation.ItemImages[a[i]];
                     //α値を戻す
                     PlayerHaveItem[i].GetComponent<Image>().color = new Color(1, 1, 1, 1);
                     //ボタンを活性化

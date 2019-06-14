@@ -24,10 +24,17 @@ namespace matsumura.PlayerMove
                 //サイコロを振ることを選択した場合のUI処理
                 roll.ChangeUIDice();
             }
-            else
+            //1はサイコロを振る画面
+            else if(ButtonInformation.buttonState == 1)
             {
-                //サイコロ振った場合のUI処理
+                //サイコロ振った場合のUIと値の処理
                 
+            }
+            //5はアイテム使用の最終確認画面
+            else if(ButtonInformation.buttonState == 5)
+            {
+                //アイテムを使った際の値の処理
+
             }
         }
 
