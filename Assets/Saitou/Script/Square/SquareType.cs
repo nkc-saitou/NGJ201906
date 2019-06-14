@@ -9,11 +9,12 @@ namespace Saitou.Squares
     /// </summary>
     public enum E_SqureType
     {
+        none = 0,
         start,
         goal,
         loveUp,
         loveDown,
-        special
+        special,
     }
 
     /// <summary>
@@ -24,10 +25,6 @@ namespace Saitou.Squares
         [Header("マスの種類")]
         public E_SqureType tempSqure;
 
-
-
-        public SpriteRenderer squreRenderer;
-
         /// <summary>
         /// マスの種類
         /// </summary>
@@ -35,5 +32,12 @@ namespace Saitou.Squares
             get { return tempSqure; }
             set { tempSqure = value; }
         }
+
+        List<Position> positionLis = new List<Position>();
+        public List<Position> PositionLis {
+            get { return positionLis; }
+            set { positionLis = value; }
+        }
+
     }
 }
