@@ -21,8 +21,8 @@ namespace matsumura.PlayerButton
 
         Saitou.Player.PlayerMove playerMove;
 
-        //プレイヤーのアイテム情報をいれる変数(仮)
-        int[] a = { 0, 1, 2, 3, 4, 0 };
+        ////プレイヤーのアイテム情報をいれる変数(仮)
+        //int[] a = { 0, 1, 2, 3, 4, 0 };
 
         // Use this for initialization
         void Start()
@@ -83,13 +83,13 @@ namespace matsumura.PlayerButton
             for(int i = 0; i < PlayerHaveItem.Length; i++)
             {
                 //アイテムを持っているかどうか
-                if(a[i] != (int)ItemType.None)
+                if(playerMove.HaveItem[i] != (int)ItemType.None)
                 {
                     Debug.Log(PlayerHaveItem[1]);
 
                     //アイテムの画像を入れる
                     PlayerHaveItem[i].GetComponent<Image>().sprite =
-                        playerItemInformation.ItemImages[a[i]];
+                        playerItemInformation.ItemImages[playerMove.HaveItem[i]];
                     //α値を戻す
                     PlayerHaveItem[i].GetComponent<Image>().color = new Color(1, 1, 1, 1);
                     //ボタンを活性化

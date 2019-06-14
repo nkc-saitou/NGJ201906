@@ -75,19 +75,17 @@ namespace matsumura.PlayerButton
 
         public static int buttonState = 0; //ボタンの現在の状態
 
-        // Use this for initialization
-        void Start()
-        {
-            //各ボタンの紐づけ
-            diceButton = transform.Find("DiceButton").gameObject;
-            itemButton = transform.Find("ItemButton").gameObject;
-            lookButton = transform.Find("LookButton").gameObject;
-            itemSlotA = transform.Find("ItemSlotA").gameObject;
-            itemSlotB = transform.Find("ItemSlotB").gameObject;
-            itemSlotC = transform.Find("ItemSlotC").gameObject;
-            itemSlotD = transform.Find("ItemSlotD").gameObject;
-            itemSlotE = transform.Find("ItemSlotE").gameObject;
-            itemSlotF = transform.Find("ItemSlotF").gameObject;
-        }
+	    void Awake() {
+		    //各ボタンの紐づけ
+		    diceButton = transform.Find("DiceButton").gameObject;
+		    itemButton = transform.Find("ItemButton").gameObject;
+		    lookButton = transform.Find("LookButton").gameObject;
+		    itemSlotA = transform.Find("ItemSlotA").gameObject;
+		    itemSlotB = transform.Find("ItemSlotB").gameObject;
+		    itemSlotC = transform.Find("ItemSlotC").gameObject;
+		    itemSlotD = transform.Find("ItemSlotD").gameObject;
+		    itemSlotE = transform.Find("ItemSlotE").gameObject;
+		    itemSlotF = transform.Find("ItemSlotF").gameObject;
+		}
     }
 }

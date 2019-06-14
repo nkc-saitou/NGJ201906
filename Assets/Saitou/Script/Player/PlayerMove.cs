@@ -54,9 +54,6 @@ namespace Saitou.Player
         // 次の目的地
         Position nextPos;
 
-        // 位置移動の座標
-        Vector3 startPosition;
-
         // 動ける数
         int moveCount = 0;
 
@@ -71,8 +68,6 @@ namespace Saitou.Player
             // 処理順の調整
             yield return new WaitForSeconds(0.1f);
             InitSetValue();
-
-            startPosition = transform.localPosition;
 
             NextSquare();
         }
@@ -109,8 +104,16 @@ namespace Saitou.Player
             candidate.Clear();
 
 	        for(int i = 0;i < (int)DirectionType.maxDir;i++) {
-		        // 次に行ける可能性のあるマス
-		        int index_x = squareLis[nowPos.y][nowPos.x].PositionLis[i].x;
+
+		        var nowPosSquare = squareLis[nowPos.y][nowPos.x];
+
+		        if (nowPosSquare == null) {
+					button[i].gameObject.SetActive(false);
+					continue;
+		        }
+
+				// 次に行ける可能性のあるマス
+				int index_x = squareLis[nowPos.y][nowPos.x].PositionLis[i].x;
 		        int index_y = squareLis[nowPos.y][nowPos.x].PositionLis[i].y;
 
 				var square = squareLis[index_y][index_x];
