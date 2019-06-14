@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartButton : MonoBehaviour
+public class ResultButton : MonoBehaviour
 {
-
 	void Start ()
     {
-        
+		
 	}
 
-    public void StartButtonDown()
+    public void ResultButtonDown()
     {
-        FadeManager.Instance.LoadScene("MainScene");
+        SceneManager.LoadScene("Result");
     }
 
     void Update ()

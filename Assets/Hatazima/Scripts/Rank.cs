@@ -21,8 +21,8 @@ public class Rank : MonoBehaviour
 
     void Start ()
     {
-        lovePoint = 0; // 好感度を0に戻す
         //lovePoint = GameDirector.lovePoint; //ここで好感度を受け取る
+        lovePoint = ScoreManager.Instance.Score;
 
         // 好感度によりランクを変更する
         if (lovePoint > 199)
