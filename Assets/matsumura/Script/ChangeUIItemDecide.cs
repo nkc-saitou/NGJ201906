@@ -56,6 +56,8 @@ public class ChangeUIItemDecide : MonoBehaviour {
         //2はアイテムの使用を選択をした場合のUI
         ButtonInformation.buttonState = 5;
 
+        //DiceButtonを非活性化
+        buttonInformation.DiceButton.gameObject.SetActive(true);
         //DiceButtonの子クラスのテキストを変更
         buttonInformation.DiceButton.transform.
             GetChild(0).GetComponent<Text>().text = "はい";
