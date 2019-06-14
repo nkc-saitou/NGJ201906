@@ -37,6 +37,7 @@ namespace Saitou.Squares
         public List<Position> PositionLis {
             get { return positionLis; }
             set { positionLis = value; }
-        } 
+        }
+
     }
 }

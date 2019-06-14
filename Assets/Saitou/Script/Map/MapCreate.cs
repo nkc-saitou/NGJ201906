@@ -37,6 +37,7 @@ namespace Saitou.Squares
 
         public List<List<int>> MapData { get; private set; }
         public List<List<Transform>> MapPosLis { get; private set; }
+        public List<List<SquareType>> SquareLis { get; private set; }
 
         Position startPos;
         public Position StartPos
@@ -52,10 +53,25 @@ namespace Saitou.Squares
             private set { goalPos = value; }
         }
 
+        Position maxWest;
+        public Position MaxWest
+        {
+            get { return maxWest; }
+            private set { maxWest = value; }
+        }
+
+        Position maxEast;
+        public Position MaxEast
+        {
+            get { return maxEast; }
+            private set { maxEast = value; }
+        }
+
         void Start()
         {
             MapData = new List<List<int>>();
             MapPosLis = new List<List<Transform>>();
+            SquareLis = new List<List<SquareType>>();
 
             MapData = data.Map;
 
@@ -64,17 +80,12 @@ namespace Saitou.Squares
             for (int y = 0; y < MapData.Count; y++)
             {
                 List<Transform> tempPosLis = new List<Transform>();
+                List<SquareType> tempSquareLis = new List<SquareType>();
+
                 for (int x = 0; x < MapData.Count; x++)
                 {
                     if (MapData[y][x] != (int)E_SqureType.none)
                     {
-                        GameObject obj = Instantiate(squareType[MapData[y][x] - 1].gameObject, new Vector3(x * space, y * space, 1.0f), Quaternion.identity, createParen.transform);
-
-                        // 四方でつながっているマスを取得する
-                        obj.GetComponent<SquareType>().PositionLis = SetConnection(x, y);
-
-                        tempPosLis.Add(obj.transform);
-
                         // スタート、ゴール位置は別で取得しておく
                         if (MapData[y][x] == (int)E_SqureType.start)
                         {
@@ -86,13 +97,29 @@ namespace Saitou.Squares
                             goalPos.x = x;
                             goalPos.y = y;
                         }
+                        
+
+                        GameObject obj = Instantiate(squareType[MapData[y][x] - 1].gameObject, new Vector3(x * space, y * space, 1.0f), Quaternion.identity, createParen.transform);
+                        SquareType squareObj = obj.GetComponent<SquareType>();
+                        // 四方でつながっているマスを取得する
+                        squareObj.PositionLis = SetConnection(x, y);
+
+                        tempPosLis.Add(obj.transform);
+                        tempSquareLis.Add(squareObj);
+
+
                     }
                     else
                     {
                         tempPosLis.Add(null);
+
+                        SquareType type = new SquareType();
+                        type.Squre = E_SqureType.none;
+                        tempSquareLis.Add(type);
                     }
                 }
                 MapPosLis.Add(tempPosLis);
+                SquareLis.Add(tempSquareLis);
             }
         }
 
@@ -108,9 +135,9 @@ namespace Saitou.Squares
             Position[] checkArray = new Position[4];
 
             checkArray[(int)DirectionType.south].x = x;
-            checkArray[(int)DirectionType.south].y = (y - 1 >= 0) ? y - 1 : 0;
+            checkArray[(int)DirectionType.south].y = y - 1;
 
-            checkArray[(int)DirectionType.west].x = (x - 1 >= 0) ? x - 1: 0;
+            checkArray[(int)DirectionType.west].x = x - 1;
             checkArray[(int)DirectionType.west].y = y;
 
             checkArray[(int)DirectionType.east].x = x + 1;
@@ -119,12 +146,12 @@ namespace Saitou.Squares
             checkArray[(int)DirectionType.north].x = x;
             checkArray[(int)DirectionType.north].y = y + 1;
 
-
-            for(int i = 0; i < (int)DirectionType.maxDir; i++)
+            for (int i = 0; i < (int)DirectionType.maxDir; i++)
             {
-                if (squareType[MapData[checkArray[i].y][checkArray[i].x] - 1].Squre != E_SqureType.none)
+                int index = Mathf.Max(MapData[checkArray[i].y][checkArray[i].x] - 1, 0);
+
+                if (squareType[index].Squre != E_SqureType.none)
                 {
-                    Debug.Log(squareType[MapData[checkArray[i].y][checkArray[i].x] - 1].Squre);
                     tempLis.Add(checkArray[i]);
                 }
             }
