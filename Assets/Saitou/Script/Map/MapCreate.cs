@@ -106,8 +106,6 @@ namespace Saitou.Squares
 
                         tempPosLis.Add(obj.transform);
                         tempSquareLis.Add(squareObj);
-
-
                     }
                     else
                     {

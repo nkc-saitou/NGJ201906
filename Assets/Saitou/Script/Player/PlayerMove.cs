@@ -5,6 +5,7 @@ using Saitou.Test;
 using Saitou.System;
 using Saitou.Squares;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Saitou.Player
 {
@@ -68,6 +69,14 @@ namespace Saitou.Player
             NextSquare();
         }
 
+        void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.A))
+            {
+                SceneManager.LoadScene("Result");
+            }
+        }
+
         /// <summary>
         ///  値の初期化
         /// </summary>
@@ -112,11 +121,6 @@ namespace Saitou.Player
             }
         }
 
-        private void Update()
-        {
-
-        }
-
         /// <summary>
         /// 移動開始
         /// </summary>
@@ -132,8 +136,6 @@ namespace Saitou.Player
             nowPos.y = nextPos.y;
 
             transform.position = mapPosLis[nowPos.y][nowPos.x].transform.localPosition;
-
-            Debug.Log("nowPosition :   x" + nowPos.x + "     y " + nowPos.y);
         }
 
         /// <summary>
