@@ -12,7 +12,7 @@ namespace Saitou.Editor
     {
         // マップウィンドウのサイズ
         const float WINDOW_W = 750.0f;
-        const float WINDOW_H = 750.0f;
+        const float WINDOW_H = 1000.0f;
 
         // マップのグリッド数
         int mapSize = 0;
@@ -96,7 +96,7 @@ namespace Saitou.Editor
 
                 for(int mouse_y = 0; mouse_y < mapSize; mouse_y++)
                 {
-                    if (mouse_x >= 20 || mouse_y >= 20) return;
+                    if (mouse_x >= mapSize || mouse_y >= mapSize) return;
 
                     if(gridRect[mouse_y,mouse_x].Contains(pos))
                     {
