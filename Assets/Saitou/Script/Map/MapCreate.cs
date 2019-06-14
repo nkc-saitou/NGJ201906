@@ -110,10 +110,7 @@ namespace Saitou.Squares
                     else
                     {
                         tempPosLis.Add(null);
-
-                        SquareType type = new SquareType();
-                        type.Squre = E_SqureType.none;
-                        tempSquareLis.Add(type);
+                        tempSquareLis.Add(null);
                     }
                 }
                 MapPosLis.Add(tempPosLis);
@@ -148,7 +145,7 @@ namespace Saitou.Squares
             {
                 int index = Mathf.Max(MapData[checkArray[i].y][checkArray[i].x] - 1, 0);
 
-                if (squareType[index].Squre != E_SqureType.none)
+                if (squareType[index].Square != E_SqureType.none)
                 {
                     tempLis.Add(checkArray[i]);
                 }

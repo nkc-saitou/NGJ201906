@@ -39,6 +39,7 @@ namespace Saitou.Player
         List<List<Transform>> mapPosLis = new List<List<Transform>>();
         List<List<SquareType>> squareLis = new List<List<SquareType>>();
 
+		// 次に進むことが出来るマス
         List<Position> candidate = new List<Position>();
 
         Position startPos;
@@ -107,21 +108,27 @@ namespace Saitou.Player
         {
             candidate.Clear();
 
-            for(int i = 0; i < (int)DirectionType.maxDir; i++)
-            {
-                // 次に行ける可能性のあるマス
-                int index_x = squareLis[nowPos.y][nowPos.x].PositionLis[i].x;
-                int index_y = squareLis[nowPos.y][nowPos.x].PositionLis[i].y;
+	        for(int i = 0;i < (int)DirectionType.maxDir;i++) {
+		        // 次に行ける可能性のあるマス
+		        int index_x = squareLis[nowPos.y][nowPos.x].PositionLis[i].x;
+		        int index_y = squareLis[nowPos.y][nowPos.x].PositionLis[i].y;
 
-                if ((index_x != 0 && index_y != 0 ) && squareLis[index_y][index_x].Squre != 0 && (index_x != oneBeforePos.x || index_y != oneBeforePos.y))
-                {
-                    candidate.Add(squareLis[nowPos.y][nowPos.x].PositionLis[i]);
+				var square = squareLis[index_y][index_x];
 
-                    button[i].gameObject.SetActive(true);
-                }
-                else button[i].gameObject.SetActive(false);
-            }
-        }
+		        if(square == null) {
+			        button[i].gameObject.SetActive(false);
+			        continue;
+		        }
+
+		        if((index_x != 0 && index_y != 0) && square.Square != 0 &&
+					(index_x != oneBeforePos.x || index_y != oneBeforePos.y)) {
+			        candidate.Add(squareLis[nowPos.y][nowPos.x].PositionLis[i]);
+
+			        button[i].gameObject.SetActive(true);
+		        }
+		        else button[i].gameObject.SetActive(false);
+	        }
+		}
 
         /// <summary>
         /// 歩ける数

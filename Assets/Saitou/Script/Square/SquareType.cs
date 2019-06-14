@@ -23,14 +23,14 @@ namespace Saitou.Squares
     public class SquareType : MonoBehaviour
     {
         [Header("マスの種類")]
-        public E_SqureType tempSqure;
+        public E_SqureType TempSquare;
 
         /// <summary>
         /// マスの種類
         /// </summary>
-        public E_SqureType Squre {
-            get { return tempSqure; }
-            set { tempSqure = value; }
+        public E_SqureType Square {
+            get { return TempSquare; }
+            set { TempSquare = value; }
         }
 
         List<Position> positionLis = new List<Position>();
