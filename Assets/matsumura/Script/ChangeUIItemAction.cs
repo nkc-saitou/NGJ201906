@@ -21,9 +21,6 @@ namespace matsumura.PlayerButton
 
         Saitou.Player.PlayerMove playerMove;
 
-        ////プレイヤーのアイテム情報をいれる変数(仮)
-        //int[] a = { 0, 1, 2, 3, 4, 0 };
-
         // Use this for initialization
         void Start()
         {

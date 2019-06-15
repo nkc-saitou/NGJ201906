@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Saitou.Test;
-using Saitou.System;
 using Saitou.Squares;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using System;
+using Saitou.System;
 
 namespace Saitou.Player
 {
@@ -72,7 +71,17 @@ namespace Saitou.Player
             NextSquare();
         }
 
-        /// <summary>
+	    void ExecuteAction() {
+
+		    if (state != PlayerActionState.squareAction) return;
+
+		    var map = mapPosLis[nowPos.y][nowPos.x].gameObject.FindGameObjectInterface<ISquaresCall>();
+
+		    Debug.Log(map);
+		    //mapPosLis[nowPos.y][nowPos.x]
+	    }
+
+	    /// <summary>
         ///  値の初期化
         /// </summary>
         void InitSetValue()
@@ -150,16 +159,20 @@ namespace Saitou.Player
             oneBeforePos = nowPos;
             nowPos = nextPos;
 
-            if (moveCount > 0) moveCount--;
-            else
+	        if (moveCount > 0) {
+		        moveCount--;
+	        }
+
+	        moveCountText.text = moveCount.ToString();
+
+	        transform.position = mapPosLis[nowPos.y][nowPos.x].transform.localPosition;
+
+			if(moveCount <= 0)
             {
                 state = PlayerActionState.squareAction;
+				ExecuteAction();
                 return;
             }
-
-            moveCountText.text = moveCount.ToString();
-
-            transform.position = mapPosLis[nowPos.y][nowPos.x].transform.localPosition;
         }
 
         /// <summary>

@@ -15,6 +15,8 @@ namespace shima
         int random1 = 0;
         int lovePointchange;
 
+	    Saitou.UI.MapChanged mapChanged;
+
         // Use this for initialization
         void Start()
         {
@@ -23,6 +25,8 @@ namespace shima
             this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 0);
             this.textbox = GameObject.Find("textbox");
             this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+
+	        mapChanged = FindObjectOfType<Saitou.UI.MapChanged>();
         }
 
         // Update is called once per frame
@@ -66,6 +70,7 @@ namespace shima
             }
             lovePointchange = 0;
             //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
+			mapChanged.ShowUi();
 
         }
         public void koukandoDown()
@@ -103,21 +108,25 @@ namespace shima
             }
             this.lovePointchange = 0;
             //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
+			mapChanged.ShowUi();
         }
         public void ring()
         {
             lovePoint += 100;
-            //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
-        }
+			//ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
+			mapChanged.ShowUi();
+		}
         public void flower()
         {
             lovePoint += 50;
-            //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
-        }
+			//ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
+			mapChanged.ShowUi();
+		}
         public void hatena()
         {
             lovePoint += 50;
-            //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
-        }
+			//ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
+			mapChanged.ShowUi();
+		}
     }
 }
