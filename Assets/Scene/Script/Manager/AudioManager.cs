@@ -82,6 +82,11 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
         Invoke("DelayPlaySE", delay);
     }
 
+    public void StopSE()
+    {
+        attachSESource.Stop();
+    }
+
     void DelayPlaySE()
     {
         //ＳＥを流す
@@ -139,7 +144,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     {
         if(!isFadeOut)
         {
-            attachBGMSource.volume = 0.8f;
+            attachBGMSource.volume = 0.2f;
             return;
         }
 

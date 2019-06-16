@@ -28,22 +28,27 @@ namespace shima
             //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 0);
 
 	        mapChanged = FindObjectOfType<Saitou.UI.MapChanged>();
+
+            ScoreManager.Instance.ResetScore();
+            // 初期値代入
+            ScoreManager.Instance.AddScore(lovePoint);
         }
 
         // Update is called once per frame
         void Update()
         {
             this.text.GetComponent<Text>().text =
-                "好感度" + lovePoint;//好感度表示
+                "好感度" + ScoreManager.Instance.Score;//好感度表示
         }
         public void koukandoUp()
         {
+            AudioManager.Instance.PlayBGM("Blue");
             this.random = Random.Range(0, 6);
             if (this.random >= 0 && this.random < 3)//2分の1の確率で好感度を10増やす
             {
                 this.random = 0;
                 this.lovePointchange += 10;
-                this.lovePoint += this.lovePointchange;
+                //this.lovePoint += this.lovePointchange;
                 //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
                 //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
@@ -53,7 +58,7 @@ namespace shima
             {
                 this.random = 0;
                 lovePointchange += 15;
-                this.lovePoint += this.lovePointchange;
+                //this.lovePoint += this.lovePointchange;
                 //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
                 //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
@@ -63,24 +68,26 @@ namespace shima
             {
                 this.random = 0;
                 lovePointchange += 20;
-                this.lovePoint += this.lovePointchange;
+                //this.lovePoint += this.lovePointchange;
                 //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
                 //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
                    "好感度が" + lovePointchange + "増加した！";
             }
+            ScoreManager.Instance.AddScore(lovePointchange);
             lovePointchange = 0;
             //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
             mapChanged.ShowUi();
         }
         public void koukandoDown()
         {
+            AudioManager.Instance.PlayBGM("Red");
             this.random1 = Random.Range(0, 6);
             if (this.random1 >= 0 && this.random1 < 3)//2分の1の確率で好感度を10減らす
             {
                 this.random1 = 0;
                 lovePointchange += 10;
-                this.lovePoint -= this.lovePointchange;
+                //this.lovePoint -= this.lovePointchange;
                 //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
                 //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
@@ -90,7 +97,7 @@ namespace shima
             {
                 this.random1 = 0;
                 lovePointchange += 15;
-                this.lovePoint -= this.lovePointchange;
+                //this.lovePoint -= this.lovePointchange;
                 //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
                 //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
@@ -100,31 +107,47 @@ namespace shima
             {
                 this.random1 = 0;
                 lovePointchange += 20;
-                this.lovePoint -= this.lovePointchange;
+                //this.lovePoint -= this.lovePointchange;
                 //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
                 //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
                  "好感度が" + lovePointchange + "減少した！";
             }
+            ScoreManager.Instance.AddScore(-lovePointchange);
             this.lovePointchange = 0;
             //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
             mapChanged.ShowUi();
         }
         public void ring(bool isFirst)
         {
-            if(isFirst)lovePoint += 100;
+            if (isFirst)
+            {
+                AudioManager.Instance.PlaySE("trumpet1");
+                lovePoint += 100;
+                ScoreManager.Instance.AddScore(lovePoint);
+            }
             //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
             mapChanged.ShowUi();
         }
         public void flower(bool isFirst)
         {
-            if(isFirst)lovePoint += 150;
+            if (isFirst)
+            {
+                AudioManager.Instance.PlaySE("trumpet1");
+                lovePoint += 150;
+                ScoreManager.Instance.AddScore(lovePoint);
+            }
             //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
             mapChanged.ShowUi();
         }
         public void hatena(bool isFirst)
         {
-            if(isFirst)lovePoint += 200;
+            if (isFirst)
+            {
+                AudioManager.Instance.PlaySE("trumpet2");
+                lovePoint += 200;
+                ScoreManager.Instance.AddScore(lovePoint);
+            }
             //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
             mapChanged.ShowUi();
         }

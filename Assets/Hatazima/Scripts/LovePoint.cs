@@ -7,11 +7,11 @@ public class LovePoint : MonoBehaviour
 {
     public GameObject lovePoint_object = null;// Textオブジェクト
 
-    public static float lovePoint = 50; // 好感度
+    float lovePoint = 50; // 好感度
 
     void Start ()
     {
-        //lovePoint = GameDirector.lovePoint; //ここで好感度を受け取る
+        lovePoint = ScoreManager.Instance.Score; //ここで好感度を受け取る
 
         Text lovePoint_Text = lovePoint_object.GetComponent<Text>();
         lovePoint_Text.text = "" + (lovePoint);

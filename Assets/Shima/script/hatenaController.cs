@@ -16,7 +16,7 @@ namespace shima
         // Use this for initialization
         void Start()
         {
-            this.text = GameObject.Find("infomation");
+            this.text = GameObject.Find("GameText");
             this.textbox = GameObject.Find("textbox");
         }
 

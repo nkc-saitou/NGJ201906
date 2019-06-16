@@ -85,7 +85,7 @@ namespace Saitou.Player
 		    if (PlayerState != PlayerActionState.squareAction) return;
 
 		    var map = mapPosLis[nowPos.y][nowPos.x].gameObject.FindGameObjectInterface<ISquaresCall>();
-            map.SquaresCall();
+            if(map != null) map.SquaresCall();
 	    }
 
         /// <summary>
@@ -93,8 +93,9 @@ namespace Saitou.Player
         /// </summary>
         void CheckEnd()
         {
-            if (goalPos.x == nowPos.x && goalPos.y == nowPos.y)
-                FadeManager.Instance.LoadScene("Result");
+            if (goalPos.x != nowPos.x || goalPos.y != nowPos.y) return;
+
+            mapChanged.GameClear(true);
         }
 
 	    /// <summary>
@@ -192,6 +193,9 @@ namespace Saitou.Player
                 PlayerState = PlayerActionState.squareAction;
 				ExecuteAction();
                 mapChanged.TurnDown();
+                ////値の初期化
+                //oneBeforePos.x = 0;
+                //oneBeforePos.y = 0;
                 return;
             }
         }
@@ -202,6 +206,8 @@ namespace Saitou.Player
         public void OnNorthButton()
         {
             if (PlayerState != PlayerActionState.move) return;
+
+            AudioManager.Instance.PlaySE("move");
 
             nextPos.x = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.north].x;
             nextPos.y = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.north].y;
@@ -214,6 +220,8 @@ namespace Saitou.Player
         {
             if (PlayerState != PlayerActionState.move) return;
 
+            AudioManager.Instance.PlaySE("move");
+
             nextPos.x = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.south].x;
             nextPos.y = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.south].y;
 
@@ -225,6 +233,8 @@ namespace Saitou.Player
         {
             if (PlayerState != PlayerActionState.move) return;
 
+            AudioManager.Instance.PlaySE("move");
+
             nextPos.x = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.west].x;
             nextPos.y = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.west].y;
 
@@ -235,6 +245,8 @@ namespace Saitou.Player
         public void OnEastButton()
         {
             if (PlayerState != PlayerActionState.move) return;
+
+            AudioManager.Instance.PlaySE("move");
 
             nextPos.x = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.east].x;
             nextPos.y = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.east].y;

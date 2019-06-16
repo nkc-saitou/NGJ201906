@@ -22,22 +22,30 @@ namespace matsumura.PlayerMove
         //DiceButtonを押した際の分岐
         public void OnClickDice()
         {
+            AudioManager.Instance.StopSE();
+
             //ButtonStateの値によって分岐
             //0は初期数値
             if (ButtonInformation.buttonState == 0)
             {
                 //サイコロを振ることを選択した場合のUI処理
                 roll.ChangeUIDice();
+
+                AudioManager.Instance.PlaySE("diceRoll");
             }
             //1はサイコロを振る画面
             else if(ButtonInformation.buttonState == 1)
             {
                 //サイコロ振った場合のUIと値の処理
                 Dice.ChangeUIDicePutOut(DiceRollInformation.PlayerMoveNum);
+
+
+                AudioManager.Instance.PlaySE("diceRollFinish");
             }
             //5はアイテム使用の最終確認画面
             else if(ButtonInformation.buttonState == 5)
             {
+                AudioManager.Instance.PlaySE("Button");
                 //アイテムを使った際の値の処理
                 Item.ChangeUIItemPutOut(DiceRollInformation.itemMoveNum);
             }

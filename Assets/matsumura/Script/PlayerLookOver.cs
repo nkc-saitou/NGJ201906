@@ -27,10 +27,12 @@ namespace matsumura.PlayerLook
         //LookButtonを押した際の分岐
         public void OnClickLookOver()
         {
+            AudioManager.Instance.StopSE();
             //ButtonStateの値によって分岐
             //0は初期数値
             if (ButtonInformation.buttonState == 0)
             {
+                AudioManager.Instance.PlaySE("Button");
                 //マップを見渡すことを選んだ場合のUI処理
                 roll.ChangeUILook();
                 boxActive(false);

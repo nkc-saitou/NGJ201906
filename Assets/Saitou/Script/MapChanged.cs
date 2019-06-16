@@ -20,6 +20,13 @@ namespace Saitou.UI {
         [Header("移動方向を指し示す矢印")]
         public GameObject moveDirArrow;
 
+        public GameObject GameClearCanvas;
+
+        [Header("ゲームクリア、ゲームオーバー")]
+        public GameObject[] GameClearText;
+
+        public GameObject itemBackGround;
+
         float time;
 
         public Text dayText;
@@ -31,7 +38,11 @@ namespace Saitou.UI {
             get { return turn; }
             private set { turn = value; }
         }
-
+        
+        /// <summary>
+        /// お嬢様がいきなり出てくるかどうあk
+        /// </summary>
+        public bool IsPrincessResult { get; set; }
 
         matsumura.PlayerLook.PlayerLookOver lookOver;
         Player.PlayerMove move;
@@ -39,10 +50,18 @@ namespace Saitou.UI {
 
         void Start()
         {
+            IsPrincessResult = false;
             move = FindObjectOfType<Player.PlayerMove>();
             lookOver = FindObjectOfType<matsumura.PlayerLook.PlayerLookOver>();
 
             lookOver.boxActive += (bool isActive) => { textBox.SetActive(isActive); };
+
+            foreach (var ui in UiObjects)
+            {
+                ui.gameObject.SetActive(false);
+            }
+
+            ShowUi();
         }
 
         void Update()
@@ -57,7 +76,7 @@ namespace Saitou.UI {
 
             if (Turn == 0)
             {
-                FadeManager.Instance.LoadScene("Result");
+                if(IsPrincessResult == false) GameClear(false);
                 Turn--;
             }
         }
@@ -91,6 +110,15 @@ namespace Saitou.UI {
         }
 
         /// <summary>
+        /// ゲームクリア時またはゲームオーバー時に呼ぶ
+        /// </summary>
+        /// <param name="isClear"></param>
+        public void GameClear(bool isClear)
+        {
+            StartCoroutine(GameClearWaitTime(isClear));
+        }
+
+        /// <summary>
         /// 遅延処理
         /// </summary>
         /// <returns></returns>
@@ -111,6 +139,22 @@ namespace Saitou.UI {
             }
 
             anim.SetBool("DayText", false);
+
+            AudioManager.Instance.PlayBGM("Main");
+        }
+
+        IEnumerator GameClearWaitTime(bool isClear)
+        {
+            GameClearCanvas.SetActive(true);
+
+            yield return new WaitForSeconds(1.0f);
+
+            if (isClear) GameClearText[0].SetActive(true);
+            else GameClearText[1].SetActive(true);
+
+            yield return new WaitForSeconds(1.0f);
+
+            FadeManager.Instance.LoadScene("Result");
         }
 
         /// <summary>
@@ -118,8 +162,23 @@ namespace Saitou.UI {
         /// </summary>
         public void TurnDown()
         {
-            Debug.Log("aa");
             Turn--;
+        }
+
+        /// <summary>
+        /// アイテムを見やすくするよう
+        /// </summary>
+        public void ItemBackGroundActive()
+        {
+            itemBackGround.SetActive(true);
+        }
+
+        /// <summary>
+        /// アイテムの後ろのイメージを隠す
+        /// </summary>
+        public void ItemBackGroundHide()
+        {
+            itemBackGround.SetActive(false);
         }
     }
 }

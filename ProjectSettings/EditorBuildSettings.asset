@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Shima/Masume.unity
     guid: 55cf9910cbc4dff45a6dd3d3690f5076
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Hatazima/Ranking.unity
-    guid: 937a9823a15e56a46ae603bfaad1092a
+    guid: 38975215b6735df42925a33b2948c759

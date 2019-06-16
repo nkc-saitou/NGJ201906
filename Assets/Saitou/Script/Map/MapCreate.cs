@@ -33,7 +33,11 @@ namespace Saitou.Squares
         [Header("マスごとのスペース")]
         public int space;
 
+        [Header("LineRendererを引くためのPrefab")]
+        public SquareLineRenderer DrawLinePre;
+
         GameObject createParen;
+        GameObject lineParent;
 
         public List<List<int>> MapData { get; private set; }
         public List<List<Transform>> MapPosLis { get; private set; }
@@ -76,6 +80,7 @@ namespace Saitou.Squares
             MapData = data.Map;
 
             createParen = new GameObject("Parent");
+            lineParent = new GameObject("LineParent");
 
             for (int y = 0; y < MapData.Count; y++)
             {
@@ -116,6 +121,7 @@ namespace Saitou.Squares
                 MapPosLis.Add(tempPosLis);
                 SquareLis.Add(tempSquareLis);
             }
+            DrawLine(SquareLis, MapPosLis);
         }
 
         /// <summary>
@@ -157,6 +163,22 @@ namespace Saitou.Squares
             }
 
             return tempLis;
+        }
+
+        void DrawLine(List<List<SquareType>> type, List<List<Transform>> transformPosLis)
+        {
+            for (int y = 0; y < MapData.Count; y++)
+            {
+                for (int x = 0; x < MapData.Count; x++)
+                {
+                    for (int i = 0; i < (int)DirectionType.maxDir; i++)
+                    {
+                        if (transformPosLis[y][x] == null || transformPosLis[type[y][x].PositionLis[i].y][type[y][x].PositionLis[i].x] == null) continue;
+                        SquareLineRenderer line = Instantiate(DrawLinePre, transform.position, Quaternion.identity, lineParent.transform);
+                        line.DrawLine(transformPosLis[y][x], transformPosLis[type[y][x].PositionLis[i].y][type[y][x].PositionLis[i].x]);
+                    }
+                }
+            }
         }
     }
 }

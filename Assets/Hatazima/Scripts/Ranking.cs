@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using System.Linq;
+
 public class Ranking : MonoBehaviour
 {
     public RankingData data;
@@ -26,7 +28,8 @@ public class Ranking : MonoBehaviour
 
     void Start ()
     {
-        lovePoint = LovePoint.lovePoint; //ここで好感度を受け取る
+        lovePoint = ScoreManager.Instance.Score; //ここで好感度を受け取る
+
 
         if (RankText5 < lovePoint)
         {
@@ -41,28 +44,28 @@ public class Ranking : MonoBehaviour
             RankText5 = hozon1;
         }
 
-        if(RankText3 < RankText4)
+        if (RankText3 < RankText4)
         {
             hozon1 = RankText3;
             RankText3 = RankText4;
             RankText4 = hozon2;
         }
 
-        if(RankText2 < RankText3)
+        if (RankText2 < RankText3)
         {
             hozon2 = RankText2;
             RankText2 = RankText3;
             RankText3 = hozon1;
         }
 
-        if(RankText1 < RankText2)
+        if (RankText1 < RankText2)
         {
             hozon1 = RankText1;
             RankText1 = RankText2;
             RankText2 = hozon2;
         }
 
-        
+
         Text Rank1_Text = Rank1_object.GetComponent<Text>();
         Rank1_Text.text = "" + (RankText1);
 
