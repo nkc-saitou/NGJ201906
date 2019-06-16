@@ -72,7 +72,6 @@ namespace shima
             lovePointchange = 0;
             //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
             mapChanged.ShowUi();
-
         }
         public void koukandoDown()
         {
@@ -111,21 +110,21 @@ namespace shima
             //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
             mapChanged.ShowUi();
         }
-        public void ring()
+        public void ring(bool isFirst)
         {
-            lovePoint += 100;
+            if(isFirst)lovePoint += 100;
             //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
             mapChanged.ShowUi();
         }
-        public void flower()
+        public void flower(bool isFirst)
         {
-            lovePoint += 50;
+            if(isFirst)lovePoint += 150;
             //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
             mapChanged.ShowUi();
         }
-        public void hatena()
+        public void hatena(bool isFirst)
         {
-            lovePoint += 50;
+            if(isFirst)lovePoint += 200;
             //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
             mapChanged.ShowUi();
         }

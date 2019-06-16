@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4455106410297092}
   - component: {fileID: 114310128434902456}
+  - component: {fileID: 114134076219108378}
   m_Layer: 0
   m_Name: specialmasu(flower)
   m_TagString: Untagged
@@ -100,6 +101,17 @@ Transform:
   m_Father: {fileID: 4455106410297092}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114134076219108378
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1315810057663898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf62aedeb175ac4ca2281b3b3b5649c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114310128434902456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -111,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19d336d63450b3b45a2bc914d8e01fac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TempSquare: 3
+  TempSquare: 7
 --- !u!212 &212804360180642666
 SpriteRenderer:
   m_ObjectHideFlags: 1

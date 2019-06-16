@@ -54,27 +54,43 @@ namespace Saitou.Editor
             mapSize = editor.MapSize;
             gridSize = editor.GridSize;
 
+            // グリッドデータを生成
+            gridRect = CreateGrid(mapSize - 1);
+
             // マップデータを初期化
             map = new string[mapSize, mapSize];
-            for (int y = 0; y < mapSize; y++)
+
+            if (editor.SquareData == null)
             {
-                for (int x = 0; x < mapSize; x++)
+                for (int y = 0; y < mapSize; y++)
                 {
-                    map[y, x] = "";
+                    for (int x = 0; x < mapSize; x++)
+                    {
+                        map[y, x] = "";
+                    }
+                }
+            }
+            else
+            {
+                for (int y = 0; y < mapSize; y++)
+                {
+                    for (int x = 0; x < mapSize; x++)
+                    {
+                        map[y, x] = editor.ImagePathList[editor.SquareData.Map[y][x]];
+                    }
                 }
             }
 
-            // グリッドデータを生成
-            gridRect = CreateGrid(mapSize);
+
         }
 
 
         void OnGUI()
         {
 
-            for (int grid_y = 0; grid_y < mapSize; grid_y++)
+            for (int grid_y = 0; grid_y < mapSize - 1; grid_y++)
             {
-                for (int grid_x = 0; grid_x < mapSize; grid_x++)
+                for (int grid_x = 0; grid_x < mapSize - 1; grid_x++)
                 {
                     DrawGridLine(gridRect[grid_y, grid_x]);
                 }
@@ -86,7 +102,7 @@ namespace Saitou.Editor
             {
                 Vector2 pos = Event.current.mousePosition;
                 int mouse_x;
-                for(mouse_x = 0; mouse_x < mapSize; mouse_x++)
+                for(mouse_x = 0; mouse_x < mapSize - 1; mouse_x++)
                 {
                     Rect r = gridRect[0, mouse_x];
 
@@ -94,16 +110,16 @@ namespace Saitou.Editor
                     if (r.x <= pos.x && pos.x <= r.x + r.width) break;
                 }
 
-                for(int mouse_y = 0; mouse_y < mapSize; mouse_y++)
+                for(int mouse_y = 0; mouse_y < mapSize - 1; mouse_y++)
                 {
-                    if (mouse_x >= mapSize || mouse_y >= mapSize) return;
+                    if (mouse_x >= mapSize - 1 || mouse_y >= mapSize - 1) return;
 
                     if(gridRect[mouse_y,mouse_x].Contains(pos))
                     {
                         // 消しゴムの時はデータを消す
                         if(editor.SelectedImagePath.IndexOf("000") > -1)
                         {
-                            map[mouse_y, mouse_x] = editor.DeleteImagePath;
+                            map[mouse_y, mouse_x] = editor.ImagePathList[0];
                         }
                         else
                         {
@@ -117,9 +133,9 @@ namespace Saitou.Editor
             }
 
             // 選択した画像を描画する
-            for(int mouse_y = 0; mouse_y < mapSize; mouse_y++)
+            for(int mouse_y = 0; mouse_y < mapSize - 1; mouse_y++)
             {
-                for(int mouse_x = 0; mouse_x < mapSize; mouse_x++)
+                for(int mouse_x = 0; mouse_x < mapSize - 1; mouse_x++)
                 {
                     if(map[mouse_y,mouse_x] != null && map[mouse_y,mouse_x].Length > 0)
                     {
@@ -145,11 +161,11 @@ namespace Saitou.Editor
             {
                 if (GUILayout.Button("すべて削除", GUILayout.MinWidth(700), GUILayout.MinHeight(50)))
                 {
-                    for(int i = 0; i < mapSize; i++)
+                    for(int i = 0; i < mapSize - 1; i++)
                     {
-                        for(int j = 0; j < mapSize; j++)
+                        for(int j = 0; j < mapSize - 1; j++)
                         {
-                            map[i, j] = editor.DeleteImagePath;
+                            map[i, j] = editor.ImagePathList[0];
                         }
                     }
                 }

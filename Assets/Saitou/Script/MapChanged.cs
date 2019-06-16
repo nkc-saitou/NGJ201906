@@ -11,12 +11,27 @@ namespace Saitou.UI {
 
 		public GameObject[] UiObjects;
 
+        public GameObject uiText;
+
         [Header("メッセージログを表示するテキスト")]
         public Text infoText;
         [Header("テキストボックス")]
         public GameObject textBox;
         [Header("移動方向を指し示す矢印")]
         public GameObject moveDirArrow;
+
+        float time;
+
+        public Text dayText;
+        public Animator anim;
+
+        public int turn;
+        public int Turn
+        {
+            get { return turn; }
+            private set { turn = value; }
+        }
+
 
         matsumura.PlayerLook.PlayerLookOver lookOver;
         Player.PlayerMove move;
@@ -39,6 +54,12 @@ namespace Saitou.UI {
 
             // 更新
             state = move.PlayerState;
+
+            if (Turn == 0)
+            {
+                FadeManager.Instance.LoadScene("Result");
+                Turn--;
+            }
         }
 
         /// <summary>
@@ -65,10 +86,9 @@ namespace Saitou.UI {
 
             StartCoroutine(WaitTime());
 
-            foreach (var ui in UiObjects) {
-				ui.gameObject.SetActive(true);
-			}
-		}
+            uiText.SetActive(true);
+
+        }
 
         /// <summary>
         /// 遅延処理
@@ -78,7 +98,28 @@ namespace Saitou.UI {
         {
             yield return new WaitForSeconds(1.0f);
 
+            dayText.text = Turn.ToString();
+            anim.SetBool("DayText", true);
+
+            yield return new WaitForSeconds(2.0f);
+
             infoText.text = "行動をクリックで選択してね";
+
+            foreach (var ui in UiObjects)
+            {
+                ui.gameObject.SetActive(true);
+            }
+
+            anim.SetBool("DayText", false);
         }
-	}
+
+        /// <summary>
+        /// ターン
+        /// </summary>
+        public void TurnDown()
+        {
+            Debug.Log("aa");
+            Turn--;
+        }
+    }
 }

@@ -32,7 +32,6 @@ namespace matsumura.PlayerMove
             //1はサイコロを振る画面
             else if(ButtonInformation.buttonState == 1)
             {
-                Debug.Log(DiceRollInformation.PlayerMoveNum);
                 //サイコロ振った場合のUIと値の処理
                 Dice.ChangeUIDicePutOut(DiceRollInformation.PlayerMoveNum);
             }

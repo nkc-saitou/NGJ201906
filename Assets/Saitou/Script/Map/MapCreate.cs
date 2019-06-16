@@ -15,10 +15,10 @@ namespace Saitou.Squares
 
     public enum DirectionType
     {
-        south,
+        north,
         west,
         east,
-        north,
+        south,
         maxDir,
     }
 
@@ -99,7 +99,7 @@ namespace Saitou.Squares
                         }
                         
 
-                        GameObject obj = Instantiate(squareType[MapData[y][x] - 1].gameObject, new Vector3(x * space, y * space, 1.0f), Quaternion.identity, createParen.transform);
+                        GameObject obj = Instantiate(squareType[MapData[y][x] - 1].gameObject, new Vector3(x * space, y * -space, 1.0f), Quaternion.identity, createParen.transform);
                         SquareType squareObj = obj.GetComponent<SquareType>();
                         // 四方でつながっているマスを取得する
                         squareObj.PositionLis = SetConnection(x, y);
@@ -129,8 +129,8 @@ namespace Saitou.Squares
 
             Position[] checkArray = new Position[4];
 
-            checkArray[(int)DirectionType.south].x = x;
-            checkArray[(int)DirectionType.south].y = y - 1;
+            checkArray[(int)DirectionType.north].x = x;
+            checkArray[(int)DirectionType.north].y = y - 1;
 
             checkArray[(int)DirectionType.west].x = x - 1;
             checkArray[(int)DirectionType.west].y = y;
@@ -138,12 +138,17 @@ namespace Saitou.Squares
             checkArray[(int)DirectionType.east].x = x + 1;
             checkArray[(int)DirectionType.east].y = y;
 
-            checkArray[(int)DirectionType.north].x = x;
-            checkArray[(int)DirectionType.north].y = y + 1;
+            checkArray[(int)DirectionType.south].x = x;
+            checkArray[(int)DirectionType.south].y = y + 1;
 
             for (int i = 0; i < (int)DirectionType.maxDir; i++)
             {
-                int index = Mathf.Max(MapData[checkArray[i].y][checkArray[i].x] - 1, 0);
+                int index_y = checkArray[i].y;
+                int index_x = checkArray[i].x;
+                
+                if (index_x < 0 || index_y < 0 || index_x >= MapData.Count || index_y >= MapData.Count) continue;
+
+                int index = (MapData[index_y][index_x] - 1 < 0) ? 0 : MapData[index_y][index_x] - 1;
 
                 if (squareType[index].Square != E_SqureType.none)
                 {

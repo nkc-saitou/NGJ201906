@@ -9,12 +9,16 @@ namespace Saitou.Squares
     /// </summary>
     public enum E_SqureType
     {
-        none = 0,
+        none,
         start,
         goal,
-        loveUp,
-        loveDown,
-        special,
+        up,
+        down,
+        pulpunte,
+        specialOne,
+        specialTwo,
+        specialThree,
+        maxImageType,
     }
 
     /// <summary>

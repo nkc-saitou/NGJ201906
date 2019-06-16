@@ -17,7 +17,7 @@ namespace shima
         // Use this for initialization
         void Start()
         {
-            this.infomation = GameObject.Find("infomation").GetComponent<Text>();
+            this.infomation = GameObject.Find("GameText").GetComponent<Text>();
             this.textbox = GameObject.Find("textbox");
         }
 
@@ -26,19 +26,17 @@ namespace shima
         {
             if (Input.GetKeyDown(KeyCode.Return))// エンターキーでインターフェース呼び出し
             {
-            GameObject happening = GameObject.Find("happeningprefab");
-            happening.GetComponent<happeningController>().SquaresCall();
+                GameObject happening = GameObject.Find("happeningprefab");
+                happening.GetComponent<happeningController>().SquaresCall();
             }
             if (Input.GetKeyDown(KeyCode.Return))//エンターキーでテキスト消去
             {
                 //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 0);
-
             }
             //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 0);テキスト欄消去
             if (this.kaiwa&&Input.GetKeyDown(KeyCode.Space)) {//スペースキーを押した回数でテキスト進行
                 switch (tap)
                 {
-
                     case 0:this.infomation.text = "こんなチャンスもう二度とないかも知れない！";
                         break;
                     case 1:  this.infomation.GetComponent<Text>().text ="今ここで告白だ！！！";
