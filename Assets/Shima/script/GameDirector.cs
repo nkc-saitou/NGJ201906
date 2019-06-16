@@ -15,16 +15,17 @@ namespace shima
         int random1 = 0;
         int lovePointchange;
 
+        // showUI
 	    Saitou.UI.MapChanged mapChanged;
 
         // Use this for initialization
         void Start()
         {
             this.text = GameObject.Find("koukando");
-            this.infomation = GameObject.Find("infomation");
-            this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 0);
-            this.textbox = GameObject.Find("textbox");
-            this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+            this.infomation = GameObject.Find("GameText");
+            //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 0);
+            //this.textbox = GameObject.Find("textbox");
+            //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 0);
 
 	        mapChanged = FindObjectOfType<Saitou.UI.MapChanged>();
         }
@@ -43,8 +44,8 @@ namespace shima
                 this.random = 0;
                 this.lovePointchange += 10;
                 this.lovePoint += this.lovePointchange;
-                this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
-                this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
+                //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
                     "好感度が" + lovePointchange + "増加した！";
             }
@@ -53,8 +54,8 @@ namespace shima
                 this.random = 0;
                 lovePointchange += 15;
                 this.lovePoint += this.lovePointchange;
-                this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
-                this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
+                //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
                    "好感度が" + lovePointchange + "増加した！";
             }
@@ -63,14 +64,14 @@ namespace shima
                 this.random = 0;
                 lovePointchange += 20;
                 this.lovePoint += this.lovePointchange;
-                this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
-                this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
+                //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
                    "好感度が" + lovePointchange + "増加した！";
             }
             lovePointchange = 0;
             //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
-			mapChanged.ShowUi();
+            mapChanged.ShowUi();
 
         }
         public void koukandoDown()
@@ -81,8 +82,8 @@ namespace shima
                 this.random1 = 0;
                 lovePointchange += 10;
                 this.lovePoint -= this.lovePointchange;
-                this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
-                this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
+                //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
                    "好感度が" + lovePointchange + "減少した！";
             }
@@ -91,8 +92,8 @@ namespace shima
                 this.random1 = 0;
                 lovePointchange += 15;
                 this.lovePoint -= this.lovePointchange;
-                this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
-                this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
+                //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
                  "好感度が" + lovePointchange + "減少した！";
             }
@@ -101,32 +102,32 @@ namespace shima
                 this.random1 = 0;
                 lovePointchange += 20;
                 this.lovePoint -= this.lovePointchange;
-                this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
-                this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
+                //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
                  "好感度が" + lovePointchange + "減少した！";
             }
             this.lovePointchange = 0;
             //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
-			mapChanged.ShowUi();
+            mapChanged.ShowUi();
         }
         public void ring()
         {
             lovePoint += 100;
-			//ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
-			mapChanged.ShowUi();
-		}
+            //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
+            mapChanged.ShowUi();
+        }
         public void flower()
         {
             lovePoint += 50;
-			//ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
-			mapChanged.ShowUi();
-		}
+            //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
+            mapChanged.ShowUi();
+        }
         public void hatena()
         {
             lovePoint += 50;
-			//ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
-			mapChanged.ShowUi();
-		}
+            //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
+            mapChanged.ShowUi();
+        }
     }
 }

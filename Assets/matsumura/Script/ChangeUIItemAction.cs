@@ -37,8 +37,6 @@ namespace matsumura.PlayerButton
             PlayerHaveItem[4] = playerItemInformation.PlayerHaveItemE;
             PlayerHaveItem[5] = playerItemInformation.PlayerHaveItemF;
 
-            Debug.Log(playerItemInformation.PlayerHaveItemA);
-
             //配列にボタンの情報を写す
             ItemSlot[0] = buttonInformation.ItemSlotA;
             ItemSlot[1] = buttonInformation.ItemSlotB;
@@ -82,8 +80,6 @@ namespace matsumura.PlayerButton
                 //アイテムを持っているかどうか
                 if(playerMove.HaveItem[i] != (int)ItemType.None)
                 {
-                    Debug.Log(PlayerHaveItem[1]);
-
                     //アイテムの画像を入れる
                     PlayerHaveItem[i].GetComponent<Image>().sprite =
                         playerItemInformation.ItemImages[playerMove.HaveItem[i]];

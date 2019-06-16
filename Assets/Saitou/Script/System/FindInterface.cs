@@ -22,7 +22,6 @@ namespace Saitou.System
                     return component;
                 }
             }
-
             return null;
         }
 
@@ -44,7 +43,6 @@ namespace Saitou.System
                     list.Add(component);
                 }
             }
-
             return list;
         }
 
