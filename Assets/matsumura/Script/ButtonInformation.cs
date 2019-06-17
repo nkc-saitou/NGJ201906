@@ -12,6 +12,12 @@ namespace matsumura.PlayerButton
 
         GameObject lookButton; //マップを見渡すを選べるボタン
 
+        //見渡しのボタン
+        GameObject rightButton;
+        GameObject leftButton;
+        GameObject upButton;
+        GameObject downButton;
+
         //どのアイテムを使うかのボタン
         GameObject itemSlotA;
         GameObject itemSlotB;
@@ -40,6 +46,29 @@ namespace matsumura.PlayerButton
             get { return lookButton; }
             set { lookButton = value; }
         }
+
+        //見渡しボタンの取得と書き換えの情報経由用
+        public GameObject RightButton
+        {
+            get { return rightButton; }
+            set { rightButton = value; }
+        }
+        public GameObject LeftButton
+        {
+            get { return leftButton; }
+            set { leftButton = value; }
+        }
+        public GameObject UpButton
+        {
+            get { return upButton; }
+            set { upButton = value; }
+        }
+        public GameObject DownButton
+        {
+            get { return downButton; }
+            set { downButton = value; }
+        }
+
 
         //どのアイテムを使うかのボタンの取得と書き換えの情報経由用
         public GameObject ItemSlotA
@@ -75,19 +104,21 @@ namespace matsumura.PlayerButton
 
         public static int buttonState = 0; //ボタンの現在の状態
 
-        // Use this for initialization
-        void Start()
-        {
-            //各ボタンの紐づけ
-            diceButton = transform.Find("DiceButton").gameObject;
-            itemButton = transform.Find("ItemButton").gameObject;
-            lookButton = transform.Find("LookButton").gameObject;
-            itemSlotA = transform.Find("ItemSlotA").gameObject;
-            itemSlotB = transform.Find("ItemSlotB").gameObject;
-            itemSlotC = transform.Find("ItemSlotC").gameObject;
-            itemSlotD = transform.Find("ItemSlotD").gameObject;
-            itemSlotE = transform.Find("ItemSlotE").gameObject;
-            itemSlotF = transform.Find("ItemSlotF").gameObject;
+	    void Awake() {
+		    //各ボタンの紐づけ
+		    diceButton = transform.Find("DiceButton").gameObject;
+		    itemButton = transform.Find("ItemButton").gameObject;
+		    lookButton = transform.Find("LookButton").gameObject;
+		    itemSlotA = transform.Find("ItemSlotA").gameObject;
+		    itemSlotB = transform.Find("ItemSlotB").gameObject;
+		    itemSlotC = transform.Find("ItemSlotC").gameObject;
+		    itemSlotD = transform.Find("ItemSlotD").gameObject;
+		    itemSlotE = transform.Find("ItemSlotE").gameObject;
+		    itemSlotF = transform.Find("ItemSlotF").gameObject;
+            rightButton = transform.Find("RightButton").gameObject;
+            leftButton = transform.Find("LeftButton").gameObject;
+            upButton = transform.Find("UpButton").gameObject;
+            downButton = transform.Find("DownButton").gameObject;
         }
     }
 }

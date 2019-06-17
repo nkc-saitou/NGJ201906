@@ -36,15 +36,19 @@ public class RankPicture : MonoBehaviour
         {
             case 1:
                 GameObject go1 = Instantiate(RankPrefab1) as GameObject;  //プレハブを作成する
+                AudioManager.Instance.PlaySE("piano1");
                 break;
             case 2:
                 GameObject go2 = Instantiate(RankPrefab2) as GameObject;  //プレハブを作成する
+                AudioManager.Instance.PlaySE("piano1");
                 break;
             case 3:
                 GameObject go3 = Instantiate(RankPrefab3) as GameObject;  //プレハブを作成する
+                AudioManager.Instance.PlaySE("fate1");
                 break;
             case 4:
                 GameObject go4 = Instantiate(RankPrefab4) as GameObject;  //プレハブを作成する
+                AudioManager.Instance.PlaySE("fate2");
                 break;
 
         }

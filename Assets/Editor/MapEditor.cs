@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Saitou.Editor
 {
+
     public class MapEditor : EditorWindow
     {
         //-----------------------------------------
@@ -16,6 +18,8 @@ namespace Saitou.Editor
         // データ出力先のディレクトリ
         Object outputDirectory;
 
+        Object LoadSquareData;
+
         // 出力する際のファイル名
         string outputFileName = "NewOutputFile";
 
@@ -23,13 +27,18 @@ namespace Saitou.Editor
 
         public string SelectedImagePath { get; private set; }
 
-        public string DeleteImagePath { get; private set; }
+        List<string> tmpPathLis = new List<string>();
+        public List<string> ImagePathList
+        {
+            get { return tmpPathLis; }
+            private set { tmpPathLis = value; }
+        }
 
         public int MapSize { get; private set; }
 
         public float GridSize { get; private set; }
 
-        public SquaresData SquareData { get; set; }
+        public SquareDataSerialize SquareData { get; private set; }
 
         /// <summary>
         /// WindowﾀﾌﾞにMapCreaterを追加
@@ -44,6 +53,8 @@ namespace Saitou.Editor
         {
             EditorGUILayout.LabelField("スゴロク用マップツール");
             EditorGUILayout.Space();
+            EditorGUILayout.LabelField("新規で作りたい場合は再読み込みデータには何も入れないでね");
+
 
             if (mapCreater == null)
                 mapCreater = new MapCreater();
@@ -51,6 +62,23 @@ namespace Saitou.Editor
             // エディタ基本情報
             GUILayout.BeginVertical();
             {
+                // データの再読み込み
+                GUILayout.BeginHorizontal();
+                {
+                    GUILayout.Label("再読み込みデータ ", GUILayout.Width(130));
+                    LoadSquareData = EditorGUILayout.ObjectField(LoadSquareData, typeof(Object), true);
+
+                    if (LoadSquareData != null)
+                    {
+                        // パス取得、データ読み込み
+                        string squareDataPath = AssetDatabase.GetAssetPath(LoadSquareData);
+                        SquareData = AssetDatabase.LoadAssetAtPath(squareDataPath, typeof(ScriptableObject)) as SquareDataSerialize;
+                    }
+
+                    GUILayout.EndHorizontal();
+                    EditorGUILayout.Space();
+                }
+
                 // エディタで使う画像あれこれ
                 GUILayout.BeginHorizontal();
                 {
@@ -66,7 +94,8 @@ namespace Saitou.Editor
                 GUILayout.BeginHorizontal();
                 {
                     GUILayout.Label("マップの大きさ ", GUILayout.Width(130));
-                    MapSize = EditorGUILayout.IntField(MapSize);
+                    if (LoadSquareData == null) MapSize = EditorGUILayout.IntField(MapSize);
+                    else MapSize = EditorGUILayout.IntField(SquareData.Map.Count);
                     GUILayout.EndHorizontal();
                     EditorGUILayout.Space();
                 }
@@ -98,8 +127,12 @@ namespace Saitou.Editor
                     EditorGUILayout.Space();
                 }
 
+
+
                 GUILayout.EndHorizontal();
             }
+
+
 
             DrawImages();
             DisplaySelectedImage();
@@ -118,19 +151,19 @@ namespace Saitou.Editor
 
             const float w = 50.0f;
             const float h = 50.0f;
-            const float maxW = 400.0f;
+            const float maxW = 200.0f;
 
             // アセットが保存されているプロジェクトフォルダーのパス名
             string path = AssetDatabase.GetAssetPath(inputDirectory);
             // pathで指定されたフォルダ以下のファイルパスを全て取得する
             string[] fileNames = Directory.GetFiles(path, "*.png");
 
-            // 削除パスだけ別で保存しておく
-            DeleteImagePath = fileNames[0];
+            // ファイルデータを個別で保存しておく
+            ImagePathList.AddRange(fileNames);
 
             EditorGUILayout.BeginVertical();
             {
-                foreach (string dir in fileNames)
+                for(int i = 0; i < fileNames.Length; i++)
                 {
                     // 横がmaxWを超えていたら改行する
                     if (x > maxW)
@@ -146,13 +179,13 @@ namespace Saitou.Editor
                     }
 
                     // テクスチャを取得
-                    Texture2D tex = (Texture2D)AssetDatabase.LoadAssetAtPath(dir, typeof(Texture2D));
+                    Texture2D tex = (Texture2D)AssetDatabase.LoadAssetAtPath(fileNames[i], typeof(Texture2D));
 
                     // ボタンを配置
-                    if(GUILayout.Button(tex, GUILayout.MaxWidth(w), GUILayout.MaxHeight(h),
+                    if (GUILayout.Button(tex, GUILayout.MaxWidth(w), GUILayout.MaxHeight(h),
                         GUILayout.ExpandWidth(false), GUILayout.ExpandHeight(false)))
                     {
-                        SelectedImagePath = dir;
+                        SelectedImagePath = fileNames[i];
                     }
 
                     // 位置を調整

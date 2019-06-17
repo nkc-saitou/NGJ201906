@@ -14,6 +14,9 @@ namespace matsumura.PlayerUesItem
         //ItemButtonを押した際の分岐
         public void OnClickItemAction()
         {
+            AudioManager.Instance.StopSE();
+
+            AudioManager.Instance.PlaySE("Button");
             //アイテムを使用することを選んだ場合のUI処理
             roll.ChangeUIItem();
         }

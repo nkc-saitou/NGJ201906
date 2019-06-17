@@ -12,6 +12,7 @@ public class ResultButton : MonoBehaviour
 
     public void ResultButtonDown()
     {
+        AudioManager.Instance.PlaySE("Button");
         SceneManager.LoadScene("Result");
     }
 

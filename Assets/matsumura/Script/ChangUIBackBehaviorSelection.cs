@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 using matsumura.PLayerItem;
 using matsumura.DiceRoll;
+using matsumura.LookOver;
 
 namespace matsumura.PlayerButton
 {
@@ -22,8 +23,8 @@ namespace matsumura.PlayerButton
         //forで処理するため、配列にボタンの情報をまとめる
         GameObject[] ItemSlot = new GameObject[6];
 
-        //プレイヤーのアイテム情報をいれる変数(仮)
-        int[] a = { 0, 1, 2, 3, 4, 0 };
+        ////プレイヤーのアイテム情報をいれる変数(仮)
+        //int[] a = { 0, 1, 2, 3, 4, 0 };
 
         // Use this for initialization
         void Start()
@@ -96,6 +97,19 @@ namespace matsumura.PlayerButton
                 buttonInformation.ItemSlotD = ItemSlot[3];
                 buttonInformation.ItemSlotE = ItemSlot[4];
                 buttonInformation.ItemSlotF = ItemSlot[5];
+            }
+            else if (ButtonInformation.buttonState == 3)
+            {
+                //DiceButtonを活性化
+                buttonInformation.DiceButton.gameObject.SetActive(true);
+
+                //見渡しボタンの非活性化
+                buttonInformation.RightButton.gameObject.SetActive(false);
+                buttonInformation.LeftButton.gameObject.SetActive(false);
+                buttonInformation.UpButton.gameObject.SetActive(false);
+                buttonInformation.DownButton.gameObject.SetActive(false);
+
+                MapLookOver.camera.transform.position = new Vector3(MapLookOver.playerX, MapLookOver.playerY, 0);
             }
             else
             {

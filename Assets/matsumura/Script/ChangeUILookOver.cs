@@ -45,6 +45,12 @@ namespace matsumura.PlayerButton
             //LookButtonの子クラスのテキストを変更
             buttonInformation.LookButton.transform.
                 GetChild(0).GetComponent<Text>().text = "戻る";
+
+            //見渡し用ボタンの活性化
+            buttonInformation.RightButton.gameObject.SetActive(true);
+            buttonInformation.LeftButton.gameObject.SetActive(true);
+            buttonInformation.UpButton.gameObject.SetActive(true);
+            buttonInformation.DownButton.gameObject.SetActive(true);
         }
     }
 }

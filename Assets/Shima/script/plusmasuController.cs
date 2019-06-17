@@ -19,16 +19,16 @@ namespace shima
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Return))//エンターキーでインターフェース呼び出し
-            {
-                GameObject director = GameObject.Find("plusprefab");
-                director.GetComponent<plusmasuController>().SquaresCall();
+            //if (Input.GetKeyDown(KeyCode.Return))//エンターキーでインターフェース呼び出し
+            //{
+            //    GameObject director = GameObject.Find("plusprefab");
+            //    director.GetComponent<plusmasuController>().SquaresCall();
 
-            }
-            if (Input.GetKeyDown(KeyCode.Space))//スペースキーでテキスト消去
-            {
-                //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 0);
-            }
+            //}
+            //if (Input.GetKeyDown(KeyCode.Space))//スペースキーでテキスト消去
+            //{
+            //    //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 0);
+            //}
             //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 0);テキスト欄消去
         }
 

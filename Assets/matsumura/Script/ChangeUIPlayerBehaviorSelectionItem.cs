@@ -19,6 +19,8 @@ namespace matsumura.DiceRoll
         //DiceRollInformationをいれる変数
         ButtonInformation buttonInformation;
 
+        Saitou.Player.PlayerMove playerMove;
+
         // Use this for initialization
         void Start()
         {
@@ -28,6 +30,10 @@ namespace matsumura.DiceRoll
             playerItemInformation = GetComponent<PlayerItemInformation>();
             //DiceRollInformationのイメージを使うので変数にいれる
             diceRollInformation = GetComponent<DiceRollInformation>();
+
+            playerMove = FindObjectOfType<Saitou.Player.PlayerMove>();
+
+
         }
 
         // Update is called once per frame
@@ -38,6 +44,12 @@ namespace matsumura.DiceRoll
 
             //
             playerItemInformation.GameText.gameObject.SetActive(false);
+
+            //
+            playerMove.HaveItem[DiceRollInformation.itemActionNum] = 0;
+
+            //
+            ButtonInformation.buttonState = 0;
 
             //DiceButtonの子クラスのテキストを変更
             buttonInformation.DiceButton.transform.
@@ -51,7 +63,7 @@ namespace matsumura.DiceRoll
             buttonInformation.LookButton.gameObject.SetActive(false);
 
             //移動の処理を呼ぶ
-
+            playerMove.GetMoveCount(playerMoveNum);
         }
     }
 }

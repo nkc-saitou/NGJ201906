@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -210,6 +210,54 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &451584331
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4493159198340786, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.1271044
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493159198340786, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.19228332
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493159198340786, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.06387039
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493159198340786, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493159198340786, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493159198340786, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493159198340786, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493159198340786, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 82283014082093310, guid: 6ea706e4dee39d44e86d9c8eec815dac,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114117705555372294, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &714781869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,7 +1152,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lovePoint_object: {fileID: 714781869}
-  lovePoint: 0
 --- !u!114 &1765402810
 MonoBehaviour:
   m_ObjectHideFlags: 0

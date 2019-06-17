@@ -82,6 +82,11 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
         Invoke("DelayPlaySE", delay);
     }
 
+    public void StopSE()
+    {
+        attachSESource.Stop();
+    }
+
     void DelayPlaySE()
     {
         //ＳＥを流す

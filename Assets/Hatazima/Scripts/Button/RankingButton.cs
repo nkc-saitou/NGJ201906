@@ -12,6 +12,7 @@ public class RankingButton : MonoBehaviour
 
     public void RankingButtonDown()
     {
+        AudioManager.Instance.PlaySE("Button");
         SceneManager.LoadScene("Ranking");
     }
 

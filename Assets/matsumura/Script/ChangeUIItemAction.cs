@@ -19,8 +19,7 @@ namespace matsumura.PlayerButton
         //forで処理するため、配列にボタンの情報をまとめる
         GameObject[] ItemSlot = new GameObject[6];
 
-        //プレイヤーのアイテム情報をいれる変数(仮)
-        int[] a = { 0, 1, 2, 3, 4, 0 };
+        Saitou.Player.PlayerMove playerMove;
 
         // Use this for initialization
         void Start()
@@ -38,8 +37,6 @@ namespace matsumura.PlayerButton
             PlayerHaveItem[4] = playerItemInformation.PlayerHaveItemE;
             PlayerHaveItem[5] = playerItemInformation.PlayerHaveItemF;
 
-            Debug.Log(playerItemInformation.PlayerHaveItemA);
-
             //配列にボタンの情報を写す
             ItemSlot[0] = buttonInformation.ItemSlotA;
             ItemSlot[1] = buttonInformation.ItemSlotB;
@@ -49,6 +46,7 @@ namespace matsumura.PlayerButton
             ItemSlot[5] = buttonInformation.ItemSlotF;
 
             //プレイヤーの情報取得
+            playerMove = FindObjectOfType<Saitou.Player.PlayerMove>();
 
         }
 
@@ -80,13 +78,11 @@ namespace matsumura.PlayerButton
             for(int i = 0; i < PlayerHaveItem.Length; i++)
             {
                 //アイテムを持っているかどうか
-                if(a[i] != (int)ItemType.None)
+                if(playerMove.HaveItem[i] != (int)ItemType.None)
                 {
-                    Debug.Log(PlayerHaveItem[1]);
-
                     //アイテムの画像を入れる
                     PlayerHaveItem[i].GetComponent<Image>().sprite =
-                        playerItemInformation.ItemImages[a[i]];
+                        playerItemInformation.ItemImages[playerMove.HaveItem[i]];
                     //α値を戻す
                     PlayerHaveItem[i].GetComponent<Image>().color = new Color(1, 1, 1, 1);
                     //ボタンを活性化
