@@ -119,5 +119,9 @@ namespace shima
             lovePoint += 50;
             //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
         }
+        public void taxi()
+        {
+
+        }
     }
 }
