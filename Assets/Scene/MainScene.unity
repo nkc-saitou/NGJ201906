@@ -3309,6 +3309,54 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1968364909}
   m_Script: {fileID: 11500000, guid: 12c5a313417987e49a14b93637e9a445, type: 3}
+--- !u!1001 &1557454050
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4493159198340786, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.1271044
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493159198340786, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.19228332
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493159198340786, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.06387039
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493159198340786, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493159198340786, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493159198340786, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493159198340786, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493159198340786, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 82283014082093310, guid: 6ea706e4dee39d44e86d9c8eec815dac,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
+  m_ParentPrefab: {fileID: 100100000, guid: 6ea706e4dee39d44e86d9c8eec815dac, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1570085025
 GameObject:
   m_ObjectHideFlags: 0
