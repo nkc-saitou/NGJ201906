@@ -22,6 +22,13 @@ public class TextButton : MonoBehaviour {
         //ChangeUIItemDecide
         //DiceRollInformation
         //ChangeUIPlayerBehaviorSelection
+
+        //aが使われているスクリプト
+        //ChangeUIItemAction
+        //ChangeUIItemDecide
+        //ChangeUIPlayerBehaviorSelectionDice
+        //ChangUIBackBehaviorSelection
+
     }
 
     public void OnClick()
