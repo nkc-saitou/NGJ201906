@@ -107,7 +107,7 @@ namespace matsumura.LookOver
 
         public void LeftEnd()
         {
-            moveRight = false;
+            moveLeft = false;
         }
 
 
