@@ -59,20 +59,28 @@ namespace shima
         {
 
             //this.random = Random.Range(0f, 100f);
-            //if (this.random >= 0f && this.random < 10.0f)
+
+            //if (this.random >= 0f && this.random < 10f)
             //{
             //    this.random = 0;
             //    GameObject director = GameObject.Find("GameDirector");
             //    director.GetComponent<GameDirector>().koukandoUp();
             //}
-            //else if (this.random >= 10.0f && this.random < 20.0f)
+            //else if (this.random >= 10f && this.random < 20f)
             //{
             //    this.random = 0;
             //    GameObject director1 = GameObject.Find("GameDirector");
             //    director1.GetComponent<GameDirector>().koukandoDown();
             //}
-            //else if (this.random >= 20.0f)//最初にテキスト表示
+            //else if (this.random >= 20 && this.random < 30)
             //{
+            //    this.random = 0;
+            //    GameObject director2 = GameObject.Find("GameDirector");
+            //    director2.GetComponent<GameDirector>().taxi();
+            //}
+            //else if (this.random >= 30)//最初にテキスト表示
+            //{
+            //    this.random = 0;
             //    infomation.gameObject.SetActive(true);
             //    AudioManager.Instance.FadeOutBGM();
 
@@ -84,13 +92,14 @@ namespace shima
             //}
 
             this.random = Random.Range(0f, 100f);
+
             if (this.random >= 0f && this.random < 45f)
             {
                 this.random = 0;
                 GameObject director = GameObject.Find("GameDirector");
                 director.GetComponent<GameDirector>().koukandoUp();
             }
-            else if (this.random >= 45f && this.random <90f)
+            else if (this.random >= 45f && this.random < 90f)
             {
                 this.random = 0;
                 GameObject director1 = GameObject.Find("GameDirector");
@@ -98,11 +107,13 @@ namespace shima
             }
             else if (this.random >= 90 && this.random < 99)
             {
+                this.random = 0;
                 GameObject director2 = GameObject.Find("GameDirector");
                 director2.GetComponent<GameDirector>().taxi();
             }
             else if (this.random >= 99)//最初にテキスト表示
             {
+                this.random = 0;
                 infomation.gameObject.SetActive(true);
                 AudioManager.Instance.FadeOutBGM();
 

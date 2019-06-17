@@ -153,7 +153,11 @@ namespace shima
         }
         public void taxi()
         {
+            mapChanged.Taxi();
+            this.infomation.GetComponent<Text>().text =
+                "タクシーを捕まえた！\n　移動できるマスが増えた！";
 
+            //mapChanged.ShowUi();
         }
     }
 }

@@ -27,6 +27,9 @@ namespace Saitou.UI {
 
         public GameObject itemBackGround;
 
+        public delegate void MoveEventHandler(int moveCount);
+        public event MoveEventHandler moveEvent;
+
         float time;
 
         public Text dayText;
@@ -169,6 +172,11 @@ namespace Saitou.UI {
             Turn--;
         }
 
+        public void TurnUp()
+        {
+            turn++;
+        }
+
         /// <summary>
         /// アイテムを見やすくするよう
         /// </summary>
@@ -183,6 +191,50 @@ namespace Saitou.UI {
         public void ItemBackGroundHide()
         {
             itemBackGround.SetActive(false);
+        }
+
+        public void Taxi()
+        {
+            int rnd = UnityEngine.Random.Range(4,7) ;
+            moveEvent(rnd);
+
+            StartCoroutine(TaxiWaitTime());
+        }
+
+        /// <summary>
+        /// 遅延処理
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator TaxiWaitTime()
+        {
+            textBox.SetActive(true);
+
+            infoText.gameObject.SetActive(true);
+
+            moveDirArrow.SetActive(false);
+
+            
+
+
+            yield return new WaitForSeconds(1.0f);
+
+
+
+            yield return new WaitForSeconds(2.0f);
+
+
+
+            moveDirArrow.SetActive(true);
+
+            textBox.SetActive(false);
+            infoText.gameObject.SetActive(false);
+
+            foreach (var ui in UiObjects)
+            {
+                ui.gameObject.SetActive(false);
+            }
+
+
         }
     }
 }

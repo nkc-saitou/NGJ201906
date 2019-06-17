@@ -75,6 +75,12 @@ namespace Saitou.Player
             PlayerState = PlayerActionState.actionSelect;
 
             mapChanged = FindObjectOfType<UI.MapChanged>();
+
+            mapChanged.moveEvent += (taxiMoveCounts) =>
+            {
+                GetMoveCount(taxiMoveCounts);
+                mapChanged.TurnUp();
+            };
         }
 
         /// <summary>
@@ -192,10 +198,8 @@ namespace Saitou.Player
             {
                 PlayerState = PlayerActionState.squareAction;
 				ExecuteAction();
+
                 mapChanged.TurnDown();
-                ////値の初期化
-                //oneBeforePos.x = 0;
-                //oneBeforePos.y = 0;
                 return;
             }
         }
