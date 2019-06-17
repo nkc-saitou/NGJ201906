@@ -150,7 +150,11 @@ namespace Saitou.UI {
             yield return new WaitForSeconds(1.0f);
 
             if (isClear) GameClearText[0].SetActive(true);
-            else GameClearText[1].SetActive(true);
+            else
+            {
+                GameClearText[1].SetActive(true);
+                ScoreManager.Instance.ResetScore();
+            }
 
             yield return new WaitForSeconds(1.0f);
 
