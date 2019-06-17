@@ -151,5 +151,9 @@ namespace shima
             //ここからプレイヤーの行動選択UIをいじるメソッドを呼ぶ
             mapChanged.ShowUi();
         }
+        public void taxi()
+        {
+
+        }
     }
 }
