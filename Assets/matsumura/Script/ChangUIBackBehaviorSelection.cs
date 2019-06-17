@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 using matsumura.PLayerItem;
 using matsumura.DiceRoll;
+using matsumura.LookOver;
 
 namespace matsumura.PlayerButton
 {
@@ -96,6 +97,19 @@ namespace matsumura.PlayerButton
                 buttonInformation.ItemSlotD = ItemSlot[3];
                 buttonInformation.ItemSlotE = ItemSlot[4];
                 buttonInformation.ItemSlotF = ItemSlot[5];
+            }
+            else if (ButtonInformation.buttonState == 3)
+            {
+                //DiceButtonを活性化
+                buttonInformation.DiceButton.gameObject.SetActive(true);
+
+                //見渡しボタンの非活性化
+                buttonInformation.RightButton.gameObject.SetActive(false);
+                buttonInformation.LeftButton.gameObject.SetActive(false);
+                buttonInformation.UpButton.gameObject.SetActive(false);
+                buttonInformation.DownButton.gameObject.SetActive(false);
+
+                MapLookOver.camera.transform.position = new Vector3(MapLookOver.playerX, MapLookOver.playerY, 0);
             }
             else
             {

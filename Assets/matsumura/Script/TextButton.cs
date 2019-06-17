@@ -29,6 +29,9 @@ public class TextButton : MonoBehaviour {
         //ChangeUIPlayerBehaviorSelectionDice
         //ChangUIBackBehaviorSelection
 
+        //0.1599998
+        //0.3000002
+
     }
 
     public void OnClick()
