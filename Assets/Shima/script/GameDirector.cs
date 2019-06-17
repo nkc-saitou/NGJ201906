@@ -52,7 +52,7 @@ namespace shima
                 //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
                 //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
-                    "好感度が" + lovePointchange + "増加した！";
+                    "迷子の子供を交番まで案内した！\n好感度が" + lovePointchange + "増加した！";
             }
             else if (this.random >= 3 && this.random < 5)//3分の1の確率で好感度を15増やす
             {
@@ -62,7 +62,7 @@ namespace shima
                 //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
                 //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
-                   "好感度が" + lovePointchange + "増加した！";
+                   "困っているおばあちゃんの荷物を持ってあげた！\n好感度が" + lovePointchange + "増加した！";
             }
             else if (this.random >= 5 && this.random < 6)//6分の1の確率で好感度を20増やす
             {
@@ -72,7 +72,7 @@ namespace shima
                 //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
                 //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
-                   "好感度が" + lovePointchange + "増加した！";
+                   "ボランティア活動に参加してゴミ拾いをした！\n好感度が" + lovePointchange + "増加した！";
             }
             ScoreManager.Instance.AddScore(lovePointchange);
             lovePointchange = 0;
@@ -91,7 +91,7 @@ namespace shima
                 //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
                 //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
-                   "好感度が" + lovePointchange + "減少した！";
+                   "迷子の子供がいたが面倒だったので無視した！\n好感度が" + lovePointchange + "減少した！";
             }
             else if (this.random1 >= 3 && this.random1 < 5)//3分の1の確率で好感度を15減らす
             {
@@ -101,7 +101,7 @@ namespace shima
                 //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
                 //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
-                 "好感度が" + lovePointchange + "減少した！";
+                 "ペットボトルをポイ捨てした！\n好感度が" + lovePointchange + "減少した！";
             }
             else if (this.random1 >= 5 && this.random1 < 6)//6分の1の確率で好感度を20減らす
             {
@@ -111,7 +111,7 @@ namespace shima
                 //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 1);
                 //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                 this.infomation.GetComponent<Text>().text =
-                 "好感度が" + lovePointchange + "減少した！";
+                 "ながら歩きしながら信号無視した！\n好感度が" + lovePointchange + "減少した！";
             }
             ScoreManager.Instance.AddScore(-lovePointchange);
             this.lovePointchange = 0;
