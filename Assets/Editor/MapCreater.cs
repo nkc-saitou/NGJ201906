@@ -12,7 +12,7 @@ namespace Saitou.Editor
     {
         // マップウィンドウのサイズ
         const float WINDOW_W = 750.0f;
-        const float WINDOW_H = 1000.0f;
+        const float WINDOW_H = 650.0f;
 
         // マップのグリッド数
         int mapSize = 0;
