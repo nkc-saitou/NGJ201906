@@ -12,7 +12,6 @@ namespace shima
         Text infomation;
         GameObject textbox;
         float random;
-        //Text text;
         int tap=0;
         // Use this for initialization
         void Start()
@@ -29,12 +28,12 @@ namespace shima
             GameObject happening = GameObject.Find("happeningprefab");
             happening.GetComponent<happeningController>().SquaresCall();
             }
-            if (Input.GetKeyDown(KeyCode.Return))//エンターキーでテキスト消去
+            if (Input.GetMouseButtonDown(0))//左クリックで発動
             {
-                //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 0);
-
+                this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 0);//テキスト消去
+                //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 0);//エンターキーでテキスト欄消去
             }
-            //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 0);テキスト欄消去
+
             if (this.kaiwa&&Input.GetKeyDown(KeyCode.Space)) {//スペースキーを押した回数でテキスト進行
                 switch (tap)
                 {

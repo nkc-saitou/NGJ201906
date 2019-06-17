@@ -26,13 +26,13 @@ namespace shima
                 director.GetComponent<minusmasuController>().SquaresCall();
 
             }
-            if (Input.GetKeyDown(KeyCode.Space))//スペースキーでテキスト消去
+            if (Input.GetMouseButtonDown(0))//左クリックで発動
             {
-                //this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 0);
-              
-            }
-            //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 0);テキスト欄消去
+                this.infomation.GetComponent<Text>().color = new Color(1, 1, 1, 0);//テキスト消去
+                //this.textbox.GetComponent<Image>().color = new Color(1, 1, 1, 0);//テキスト欄消去
 
+            }
+          
         }
 
         public void SquaresCall()
