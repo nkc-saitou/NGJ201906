@@ -17,16 +17,25 @@ namespace matsumura.PlayerLook
         //ChangUIBackBehaviorSelectionをいれる変数
         public ChangUIBackBehaviorSelection back;
 
+        /// <summary>
+        /// 見渡すときにTextBoxをActiveをfalseにするイベント
+        /// </summary>
+        /// <param name="isActive">falseにしたら非表示</param>
+        public delegate void BoxActiveEventHandler(bool isActive);
+        public event BoxActiveEventHandler boxActive;
 
         //LookButtonを押した際の分岐
         public void OnClickLookOver()
         {
+            AudioManager.Instance.StopSE();
             //ButtonStateの値によって分岐
             //0は初期数値
             if (ButtonInformation.buttonState == 0)
             {
+                AudioManager.Instance.PlaySE("Button");
                 //マップを見渡すことを選んだ場合のUI処理
                 roll.ChangeUILook();
+                boxActive(false);
             }
             //5は最終決定画面から戻る場合
             else if(ButtonInformation.buttonState == 5)
@@ -38,6 +47,7 @@ namespace matsumura.PlayerLook
             {
                 //行動選択のところに戻すUI処理
                 back.ChangUIBack();
+                boxActive(true);
             }
         }
 

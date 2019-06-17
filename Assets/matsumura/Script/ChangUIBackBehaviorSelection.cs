@@ -22,8 +22,8 @@ namespace matsumura.PlayerButton
         //forで処理するため、配列にボタンの情報をまとめる
         GameObject[] ItemSlot = new GameObject[6];
 
-        //プレイヤーのアイテム情報をいれる変数(仮)
-        int[] a = { 0, 1, 2, 3, 4, 0 };
+        ////プレイヤーのアイテム情報をいれる変数(仮)
+        //int[] a = { 0, 1, 2, 3, 4, 0 };
 
         // Use this for initialization
         void Start()

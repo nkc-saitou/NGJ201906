@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Saitou.System
 {
-    public class FindInterface : MonoBehaviour
+    public static class FindInterface
     {
         /// <summary>
         /// 単数
@@ -13,7 +13,7 @@ namespace Saitou.System
         /// <returns></returns>
         public static T FindObjectOfInterfaces<T>() where T : class
         {
-            foreach (var n in FindObjectsOfType<Component>())
+            foreach (var n in GameObject.FindObjectsOfType<Component>())
             {
                 var component = n as T;
 
@@ -22,7 +22,6 @@ namespace Saitou.System
                     return component;
                 }
             }
-
             return null;
         }
 
@@ -35,7 +34,7 @@ namespace Saitou.System
         {
             List<T> list = new List<T>();
 
-            foreach (var n in FindObjectsOfType<Component>())
+            foreach (var n in GameObject.FindObjectsOfType<Component>())
             {
                 var component = n as T;
 
@@ -44,8 +43,22 @@ namespace Saitou.System
                     list.Add(component);
                 }
             }
-
             return list;
         }
-    }
+
+	    public static T FindGameObjectInterface<T>(this GameObject target) where T : class {
+
+		    var components = target.GetComponents<Component>();
+
+		    foreach (var n in components) {
+
+			    var component = n as T;
+
+			    if (component != null) return component;
+
+		    }
+		    return null;
+	    }
+
+	}
 }

@@ -15,10 +15,10 @@ namespace Saitou.Squares
 
     public enum DirectionType
     {
-        south,
+        north,
         west,
         east,
-        north,
+        south,
         maxDir,
     }
 
@@ -33,7 +33,11 @@ namespace Saitou.Squares
         [Header("マスごとのスペース")]
         public int space;
 
+        [Header("LineRendererを引くためのPrefab")]
+        public SquareLineRenderer DrawLinePre;
+
         GameObject createParen;
+        GameObject lineParent;
 
         public List<List<int>> MapData { get; private set; }
         public List<List<Transform>> MapPosLis { get; private set; }
@@ -76,6 +80,7 @@ namespace Saitou.Squares
             MapData = data.Map;
 
             createParen = new GameObject("Parent");
+            lineParent = new GameObject("LineParent");
 
             for (int y = 0; y < MapData.Count; y++)
             {
@@ -99,7 +104,7 @@ namespace Saitou.Squares
                         }
                         
 
-                        GameObject obj = Instantiate(squareType[MapData[y][x] - 1].gameObject, new Vector3(x * space, y * space, 1.0f), Quaternion.identity, createParen.transform);
+                        GameObject obj = Instantiate(squareType[MapData[y][x] - 1].gameObject, new Vector3(x * space, y * -space, 1.0f), Quaternion.identity, createParen.transform);
                         SquareType squareObj = obj.GetComponent<SquareType>();
                         // 四方でつながっているマスを取得する
                         squareObj.PositionLis = SetConnection(x, y);
@@ -110,15 +115,13 @@ namespace Saitou.Squares
                     else
                     {
                         tempPosLis.Add(null);
-
-                        SquareType type = new SquareType();
-                        type.Squre = E_SqureType.none;
-                        tempSquareLis.Add(type);
+                        tempSquareLis.Add(null);
                     }
                 }
                 MapPosLis.Add(tempPosLis);
                 SquareLis.Add(tempSquareLis);
             }
+            DrawLine(SquareLis, MapPosLis);
         }
 
         /// <summary>
@@ -132,8 +135,8 @@ namespace Saitou.Squares
 
             Position[] checkArray = new Position[4];
 
-            checkArray[(int)DirectionType.south].x = x;
-            checkArray[(int)DirectionType.south].y = y - 1;
+            checkArray[(int)DirectionType.north].x = x;
+            checkArray[(int)DirectionType.north].y = y - 1;
 
             checkArray[(int)DirectionType.west].x = x - 1;
             checkArray[(int)DirectionType.west].y = y;
@@ -141,20 +144,41 @@ namespace Saitou.Squares
             checkArray[(int)DirectionType.east].x = x + 1;
             checkArray[(int)DirectionType.east].y = y;
 
-            checkArray[(int)DirectionType.north].x = x;
-            checkArray[(int)DirectionType.north].y = y + 1;
+            checkArray[(int)DirectionType.south].x = x;
+            checkArray[(int)DirectionType.south].y = y + 1;
 
             for (int i = 0; i < (int)DirectionType.maxDir; i++)
             {
-                int index = Mathf.Max(MapData[checkArray[i].y][checkArray[i].x] - 1, 0);
+                int index_y = checkArray[i].y;
+                int index_x = checkArray[i].x;
+                
+                if (index_x < 0 || index_y < 0 || index_x >= MapData.Count || index_y >= MapData.Count) continue;
 
-                if (squareType[index].Squre != E_SqureType.none)
+                int index = (MapData[index_y][index_x] - 1 < 0) ? 0 : MapData[index_y][index_x] - 1;
+
+                if (squareType[index].Square != E_SqureType.none)
                 {
                     tempLis.Add(checkArray[i]);
                 }
             }
 
             return tempLis;
+        }
+
+        void DrawLine(List<List<SquareType>> type, List<List<Transform>> transformPosLis)
+        {
+            for (int y = 0; y < MapData.Count; y++)
+            {
+                for (int x = 0; x < MapData.Count; x++)
+                {
+                    for (int i = 0; i < (int)DirectionType.maxDir; i++)
+                    {
+                        if (transformPosLis[y][x] == null || transformPosLis[type[y][x].PositionLis[i].y][type[y][x].PositionLis[i].x] == null) continue;
+                        SquareLineRenderer line = Instantiate(DrawLinePre, transform.position, Quaternion.identity, lineParent.transform);
+                        line.DrawLine(transformPosLis[y][x], transformPosLis[type[y][x].PositionLis[i].y][type[y][x].PositionLis[i].x]);
+                    }
+                }
+            }
         }
     }
 }

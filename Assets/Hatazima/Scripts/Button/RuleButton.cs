@@ -12,6 +12,7 @@ public class RuleButton : MonoBehaviour
 
     public void RuleButtonDown()
     {
+        AudioManager.Instance.PlaySE("Button");
         SceneManager.LoadScene("Rule");
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class BGM : MonoBehaviour
 {
 	void Start ()
-    {
+    { 
         AudioManager.Instance.PlayBGM("Title");
     }
 	
@@ -16,8 +16,6 @@ public class BGM : MonoBehaviour
 
     public void StartButtonDown()
     {
-
         AudioManager.Instance.PlayBGM("Main");
-
     }
 }

@@ -13,7 +13,7 @@ public class StartButton : MonoBehaviour
 
     public void StartButtonDown()
     {
-        //SceneManager.LoadScene("MainScene");
+        AudioManager.Instance.PlaySE("Button");
         FadeManager.Instance.LoadScene("MainScene");
     }
 

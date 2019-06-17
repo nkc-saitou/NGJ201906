@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Saitou.Test;
-using Saitou.System;
 using Saitou.Squares;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using System;
+using Saitou.System;
 
 namespace Saitou.Player
 {
@@ -13,6 +12,7 @@ namespace Saitou.Player
     {
         wait,
         move,
+        squareAction,
         actionSelect,
     }
 
@@ -23,10 +23,22 @@ namespace Saitou.Player
         [Header("south,west,east,north")]
         public Button[] button;
 
+        public Text moveCountText;
+
+        //所持アイテム
+        [SerializeField] int[] haveItem;
+
+        public int[] HaveItem
+        {
+            get { return haveItem; }
+            set { haveItem = value; }
+        }
+
         List<List<int>> mapData = new List<List<int>>();
         List<List<Transform>> mapPosLis = new List<List<Transform>>();
         List<List<SquareType>> squareLis = new List<List<SquareType>>();
 
+		// 次に進むことが出来るマス
         List<Position> candidate = new List<Position>();
 
         Position startPos;
@@ -41,18 +53,12 @@ namespace Saitou.Player
         // 次の目的地
         Position nextPos;
 
-        // 移動時間
-        float time;
-        float startTime;
-
-        // 位置移動の座標
-        Vector3 startPosition;
-        Vector3 endPosition;
+        UI.MapChanged mapChanged;
 
         // 動ける数
         int moveCount = 0;
 
-        PlayerActionState state = PlayerActionState.wait;
+        public PlayerActionState PlayerState { get; private set; }
 
         /// <summary>
         /// MapCreateよりも遅く実行する
@@ -64,26 +70,44 @@ namespace Saitou.Player
             yield return new WaitForSeconds(0.1f);
             InitSetValue();
 
-            startPosition = transform.localPosition;
-
             NextSquare();
-        }
 
-        void Update()
-        {
-            if(Input.GetKeyDown(KeyCode.A))
-            {
-                SceneManager.LoadScene("Result");
-            }
+            PlayerState = PlayerActionState.actionSelect;
+
+            mapChanged = FindObjectOfType<UI.MapChanged>();
         }
 
         /// <summary>
+        /// マス効果発動
+        /// </summary>
+	    void ExecuteAction() {
+
+		    if (PlayerState != PlayerActionState.squareAction) return;
+
+		    var map = mapPosLis[nowPos.y][nowPos.x].gameObject.FindGameObjectInterface<ISquaresCall>();
+            if(map != null) map.SquaresCall();
+	    }
+
+        /// <summary>
+        /// ゴールにたどり着いたかどうかをチェック
+        /// </summary>
+        void CheckEnd()
+        {
+            if (goalPos.x != nowPos.x || goalPos.y != nowPos.y) return;
+
+            mapChanged.GameClear(true);
+        }
+
+	    /// <summary>
         ///  値の初期化
         /// </summary>
         void InitSetValue()
         {
             startPos.x = create.StartPos.x;
             startPos.y = create.StartPos.y;
+
+            oneBeforePos.x = 0;
+            oneBeforePos.y = 0;
 
             goalPos.x = create.GoalPos.x;
             goalPos.y = create.GoalPos.y;
@@ -105,37 +129,75 @@ namespace Saitou.Player
         {
             candidate.Clear();
 
-            for(int i = 0; i < (int)DirectionType.maxDir; i++)
-            {
-                // 次に行ける可能性のあるマス
-                int index_x = squareLis[nowPos.y][nowPos.x].PositionLis[i].x;
-                int index_y = squareLis[nowPos.y][nowPos.x].PositionLis[i].y;
+	        for(int i = 0;i < (int)DirectionType.maxDir;i++) {
 
-                if (index_x != 0 && index_y != 0 && squareLis[index_y][index_x].Squre != 0)
-                {
-                    candidate.Add(squareLis[nowPos.y][nowPos.x].PositionLis[i]);
+		        var nowPosSquare = squareLis[nowPos.y][nowPos.x];
 
-                    button[i].gameObject.SetActive(true);
-                }
-                else button[i].gameObject.SetActive(false);
-            }
-        }
+		        if (nowPosSquare == null) {
+					button[i].gameObject.SetActive(false);
+					continue;
+		        }
+
+                if (i >= squareLis[nowPos.y][nowPos.x].PositionLis.Count) continue;
+
+				// 次に行ける可能性のあるマス
+				int index_x = squareLis[nowPos.y][nowPos.x].PositionLis[i].x;
+		        int index_y = squareLis[nowPos.y][nowPos.x].PositionLis[i].y;
+
+				var square = squareLis[index_y][index_x];
+
+		        if(square == null) {
+			        button[i].gameObject.SetActive(false);
+			        continue;
+		        }
+
+		        if((index_x != 0 && index_y != 0) && square.Square != 0 &&
+					(index_x != oneBeforePos.x || index_y != oneBeforePos.y)) {
+			        candidate.Add(squareLis[nowPos.y][nowPos.x].PositionLis[i]);
+
+			        button[i].gameObject.SetActive(true);
+		        }
+		        else button[i].gameObject.SetActive(false);
+	        }
+		}
 
         /// <summary>
-        /// 移動開始
+        /// 歩ける数
         /// </summary>
-        /// <param name="moveSquareCount">移動できるマスの数</param>
-        void MoveStart(int moveSquareCount)
+        /// <param name="count"></param>
+        public void GetMoveCount(int count)
         {
-            moveCount = moveSquareCount;
+            PlayerState = PlayerActionState.move;
+            moveCount = count;
+
+            moveCountText.text = moveCount.ToString();
         }
 
         void Move()
         {
-            nowPos.x = nextPos.x;
-            nowPos.y = nextPos.y;
+            oneBeforePos = nowPos;
+            nowPos = nextPos;
 
-            transform.position = mapPosLis[nowPos.y][nowPos.x].transform.localPosition;
+	        if (moveCount > 0) {
+		        moveCount--;
+            }
+
+	        moveCountText.text = moveCount.ToString();
+
+	        transform.position = mapPosLis[nowPos.y][nowPos.x].transform.localPosition;
+
+            CheckEnd();
+
+            if (moveCount <= 0)
+            {
+                PlayerState = PlayerActionState.squareAction;
+				ExecuteAction();
+                mapChanged.TurnDown();
+                ////値の初期化
+                //oneBeforePos.x = 0;
+                //oneBeforePos.y = 0;
+                return;
+            }
         }
 
         /// <summary>
@@ -143,6 +205,10 @@ namespace Saitou.Player
         /// </summary>
         public void OnNorthButton()
         {
+            if (PlayerState != PlayerActionState.move) return;
+
+            AudioManager.Instance.PlaySE("move");
+
             nextPos.x = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.north].x;
             nextPos.y = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.north].y;
 
@@ -152,6 +218,10 @@ namespace Saitou.Player
 
         public void OnSorthButton()
         {
+            if (PlayerState != PlayerActionState.move) return;
+
+            AudioManager.Instance.PlaySE("move");
+
             nextPos.x = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.south].x;
             nextPos.y = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.south].y;
 
@@ -161,6 +231,10 @@ namespace Saitou.Player
 
         public void OnWestButton()
         {
+            if (PlayerState != PlayerActionState.move) return;
+
+            AudioManager.Instance.PlaySE("move");
+
             nextPos.x = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.west].x;
             nextPos.y = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.west].y;
 
@@ -170,6 +244,10 @@ namespace Saitou.Player
 
         public void OnEastButton()
         {
+            if (PlayerState != PlayerActionState.move) return;
+
+            AudioManager.Instance.PlaySE("move");
+
             nextPos.x = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.east].x;
             nextPos.y = squareLis[nowPos.y][nowPos.x].PositionLis[(int)DirectionType.east].y;
 
