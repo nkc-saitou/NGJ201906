@@ -84,17 +84,22 @@ namespace shima
             //}
 
             this.random = Random.Range(0f, 100f);
-            if (this.random >= 0f && this.random < 49f)
+            if (this.random >= 0f && this.random < 45f)
             {
                 this.random = 0;
                 GameObject director = GameObject.Find("GameDirector");
                 director.GetComponent<GameDirector>().koukandoUp();
             }
-            else if (this.random >= 49f && this.random < 99f)
+            else if (this.random >= 45f && this.random <90f)
             {
                 this.random = 0;
                 GameObject director1 = GameObject.Find("GameDirector");
                 director1.GetComponent<GameDirector>().koukandoDown();
+            }
+            else if (this.random >= 90 && this.random < 99)
+            {
+                GameObject director2 = GameObject.Find("GameDirector");
+                director2.GetComponent<GameDirector>().taxi();
             }
             else if (this.random >= 99)//最初にテキスト表示
             {
